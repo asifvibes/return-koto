@@ -2,7 +2,7 @@
 
 A simple SIP and Lumpsum return calculator for Bangladesh mutual funds.
 
-**Live:** https://asifvibes.github.io/return-koto/
+**Live:** https://returnkoto.com
 
 ## What it does
 
