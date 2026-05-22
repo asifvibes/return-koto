@@ -28,7 +28,7 @@ Historical 1-year returns as of May 2026.
 FV = P × ((1 + r)^n − 1) / r × (1 + r)
 ```
 
-where `P` = monthly investment, `r` = annual rate / 12, `n` = total months.
+where `P` = monthly investment, `r` = (1 + annual rate)^(1/12) − 1  (geometric monthly conversion), `n` = total months.
 
 **Lumpsum**
 
