@@ -468,11 +468,14 @@
     });
 
     html += `
-      <div class="disclaimer">
-        Based on historical 1-year returns as of May 2026. Past returns do not guarantee future results.
+      <div style="margin-top:24px; padding:16px; background:#F9FAFB; border:1px solid #E5E7EB; border-radius:12px; font-size:13px; color:#6B7280; line-height:1.6;">
+        <p style="font-weight:700; color:#1A1F2C; margin-bottom:8px;">How this is calculated</p>
+        <p>Returns are projected using the beginning-of-month SIP compounding formula (annuity-due) with geometric monthly rate conversion. This reflects how most Bangladeshi AMCs process monthly SIP investments, where units are allotted at the start of each month. Fund return rates are sourced directly from official AMC websites and updated every Friday.</p>
+        <p style="margin-top:8px;">Based on historical 1-year returns as of May 2026. Past returns do not guarantee future results. This tool is for educational purposes only and does not constitute investment advice.</p>
+        <p style="margin-top:12px; font-weight:600; color:#27AE60;">🚧 Work in progress — coming soon: DPS comparison, FDR rates, 3-year return projections, and custom rate input. Stay tuned.</p>
       </div>
-      <footer>
-        <span class="brand">Return Koto?</span> | Data updated weekly
+      <footer style="text-align:center; margin-top:24px; padding-top:16px; font-size:12px; color:#6B7280;">
+        <span style="color:#27AE60; font-weight:700;">Return Koto?</span> | Data updated every Friday | <a href="mailto:asifmojtoba@gmail.com" style="color:#6B7280;">Send feedback</a>
       </footer>
     `;
 
