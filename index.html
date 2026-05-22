@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Return Koto? | SIP Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2ECC71;
+    --green-dark: #27AE60;
+    --green-soft: #E8F8F0;
+    --text: #1A1F2C;
+    --text-muted: #6B7280;
+    --border: #E5E7EB;
+    --bg: #F9FAFB;
+    --card: #FFFFFF;
+    --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px 40px;
+  }
+
+  header {
+    text-align: center;
+    padding: 8px 0 24px;
+  }
+
+  header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  header h1 .accent {
+    color: var(--green);
+  }
+
+  header p {
+    margin-top: 6px;
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-group:last-of-type {
+    margin-bottom: 24px;
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 14px 14px;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: 500;
+    color: var(--text);
+    background: #FFFFFF;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 18px;
+    padding-right: 44px;
+  }
+
+  input:focus, select:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.15);
+  }
+
+  input::placeholder {
+    color: #9CA3AF;
+    font-weight: 400;
+  }
+
+  .input-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  button.calculate {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    color: #FFFFFF;
+    background: var(--green);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.05s;
+  }
+
+  button.calculate:hover {
+    background: var(--green-dark);
+  }
+
+  button.calculate:active {
+    transform: scale(0.99);
+  }
+
+  .results {
+    margin-top: 24px;
+  }
+
+  .results-header {
+    margin-bottom: 14px;
+  }
+
+  .results-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .results-header p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .fund-row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: border-color 0.15s;
+  }
+
+  .fund-row.best {
+    border: 2px solid var(--green);
+    background: var(--green-soft);
+  }
+
+  .fund-row.best::before {
+    content: "★ Best Pick";
+    position: absolute;
+    top: -10px;
+    left: 14px;
+    background: var(--green);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .fund-rank {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: #F3F4F6;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+
+  .fund-row.best .fund-rank {
+    background: rgba(46, 204, 113, 0.18);
+    color: var(--green-dark);
+  }
+
+  .fund-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+
+  .fund-category {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .fund-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  .fund-row.best .fund-stats {
+    border-top-color: rgba(46, 204, 113, 0.25);
+  }
+
+  .stat {
+    min-width: 0;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .stat-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    word-break: break-word;
+  }
+
+  .stat-value.highlight {
+    color: var(--green-dark);
+  }
+
+  .disclaimer {
+    margin-top: 24px;
+    padding: 14px 16px;
+    background: #FEF9E7;
+    border: 1px solid #FCE7A2;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #7A5C00;
+    line-height: 1.5;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 20px;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  footer .brand {
+    color: var(--green-dark);
+    font-weight: 700;
+  }
+
+  @media (min-width: 560px) {
+    header h1 { font-size: 38px; }
+    .stat-value { font-size: 15px; }
+    .card { padding: 28px; }
+  }
+
+  @media (max-width: 380px) {
+    .fund-stats {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .stat-label {
+      margin-bottom: 0;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Return <span class="accent">Koto?</span></h1>
+      <p>Calculate your investment returns</p>
+    </header>
+
+    <section class="card" aria-label="Investment inputs">
+      <div class="form-group">
+        <label for="amount">Investment Amount (BDT)</label>
+        <input type="number" id="amount" placeholder="e.g., 5000" min="1" inputmode="numeric" />
+        <div class="input-hint" id="amount-hint">Monthly contribution for SIP, or one-time amount for Lumpsum</div>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Investment Type</label>
+        <select id="type">
+          <option value="sip">Monthly SIP</option>
+          <option value="lumpsum">Lumpsum</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="years">Duration (Years)</label>
+        <input type="number" id="years" placeholder="e.g., 10" min="1" max="30" inputmode="numeric" />
+        <div class="input-hint">Between 1 and 30 years</div>
+      </div>
+
+      <button class="calculate" id="calculate-btn">Calculate</button>
+    </section>
+
+    <section class="results" id="results" aria-live="polite"></section>
+  </div>
+
+<script>
+  const funds = [
+    { name: "EDGE AMC Growth Fund", amc: "EDGE AMC", category: "Growth (Equity)", nav: 15.68, annualReturn: 0.2639 },
+    { name: "UCB Income Plus Fund", amc: "UCB Asset Management", category: "Fixed Income", nav: 13.86, annualReturn: 0.19 },
+    { name: "Shanta First Income Unit Fund", amc: "Shanta Asset Management", category: "Equity", nav: 11.307, annualReturn: 0.0893 },
+    { name: "VIPB Fixed Income Fund", amc: "VIPB Asset Management", category: "Fixed Income", nav: 12.58, annualReturn: 0.218 },
+    { name: "IDLC Balanced Fund", amc: "IDLC Asset Management", category: "Balanced", nav: 12.01, annualReturn: 0.0839 }
+  ];
+
+  const amountInput = document.getElementById('amount');
+  const typeSelect = document.getElementById('type');
+  const yearsInput = document.getElementById('years');
+  const calculateBtn = document.getElementById('calculate-btn');
+  const resultsEl = document.getElementById('results');
+  const amountHint = document.getElementById('amount-hint');
+
+  function updateHint() {
+    if (typeSelect.value === 'sip') {
+      amountHint.textContent = 'Monthly contribution amount';
+    } else {
+      amountHint.textContent = 'One-time investment amount';
+    }
+  }
+  typeSelect.addEventListener('change', updateHint);
+  updateHint();
+
+  function formatBDT(value) {
+    const rounded = Math.round(value);
+    return '৳' + rounded.toLocaleString('en-IN');
+  }
+
+  function formatPercent(value) {
+    return (value * 100).toFixed(2) + '%';
+  }
+
+  function calculateSIP(monthly, annualRate, years) {
+    const r = annualRate / 12;
+    const n = years * 12;
+    if (r === 0) return monthly * n;
+    return monthly * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+  }
+
+  function calculateLumpsum(principal, annualRate, years) {
+    return principal * Math.pow(1 + annualRate, years);
+  }
+
+  function calculate() {
+    const amount = parseFloat(amountInput.value);
+    const type = typeSelect.value;
+    const years = parseInt(yearsInput.value, 10);
+
+    if (!amount || amount <= 0) {
+      showError('Please enter a valid investment amount.');
+      amountInput.focus();
+      return;
+    }
+    if (!years || years < 1 || years > 30) {
+      showError('Please enter a duration between 1 and 30 years.');
+      yearsInput.focus();
+      return;
+    }
+
+    const totalInvested = type === 'sip' ? amount * years * 12 : amount;
+
+    const results = funds.map(fund => {
+      const futureValue = type === 'sip'
+        ? calculateSIP(amount, fund.annualReturn, years)
+        : calculateLumpsum(amount, fund.annualReturn, years);
+      const gain = futureValue - totalInvested;
+      const returnPct = totalInvested > 0 ? gain / totalInvested : 0;
+      return {
+        ...fund,
+        futureValue,
+        gain,
+        returnPct
+      };
+    });
+
+    results.sort((a, b) => b.futureValue - a.futureValue);
+    renderResults(results, type, totalInvested, years);
+  }
+
+  function showError(msg) {
+    resultsEl.innerHTML = `
+      <div class="card" style="border-color:#FCA5A5;background:#FEF2F2;color:#991B1B;font-size:14px;font-weight:500;">
+        ${msg}
+      </div>
+    `;
+  }
+
+  function renderResults(results, type, totalInvested, years) {
+    const typeLabel = type === 'sip' ? 'Monthly SIP' : 'Lumpsum';
+    let html = `
+      <div class="results-header">
+        <h2>Projected Results · ${years} years</h2>
+        <p>${typeLabel} · Total invested: <strong>${formatBDT(totalInvested)}</strong></p>
+      </div>
+    `;
+
+    results.forEach((r, idx) => {
+      const isBest = idx === 0;
+      html += `
+        <div class="fund-row ${isBest ? 'best' : ''}">
+          <div class="fund-rank">#${idx + 1}</div>
+          <div class="fund-name">${r.name}</div>
+          <div class="fund-category">${r.category} · ${r.amc}</div>
+          <div class="fund-stats">
+            <div class="stat">
+              <div class="stat-label">Final Value</div>
+              <div class="stat-value ${isBest ? 'highlight' : ''}">${formatBDT(r.futureValue)}</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Total Gain</div>
+              <div class="stat-value">${formatBDT(r.gain)}</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Return</div>
+              <div class="stat-value ${isBest ? 'highlight' : ''}">${formatPercent(r.returnPct)}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    html += `
+      <div class="disclaimer">
+        Based on historical 1-year returns as of May 2026. Past returns do not guarantee future results.
+      </div>
+      <footer>
+        <span class="brand">Return Koto?</span> | Data updated weekly
+      </footer>
+    `;
+
+    resultsEl.innerHTML = html;
+    resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  calculateBtn.addEventListener('click', calculate);
+  [amountInput, yearsInput].forEach(el => {
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter') calculate();
+    });
+  });
+</script>
+</body>
+</html>
