@@ -379,7 +379,7 @@
   }
 
   function calculateSIP(monthly, annualRate, years) {
-    const r = annualRate / 12;
+    const r = Math.pow(1 + annualRate, 1/12) - 1;
     const n = years * 12;
     if (r === 0) return monthly * n;
     return monthly * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
