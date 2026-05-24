@@ -490,6 +490,16 @@
             <div class="stat">
               <div class="stat-label">Return</div>
               <div class="stat-value ${isBest ? 'highlight' : ''}">${formatPercent(r.returnPct)}</div>
+              <div style="position:relative; display:inline-block; margin-left:4px;">
+                <span id="info-${idx}" style="display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; background:#E5E7EB; color:#6B7280; font-size:10px; font-weight:700; cursor:pointer; line-height:1;"
+                  onmouseenter="document.getElementById('tip-${idx}').style.display='block'"
+                  onmouseleave="document.getElementById('tip-${idx}').style.display='none'"
+                  ontouchstart="document.getElementById('tip-${idx}').style.display='block'"
+                  >i</span>
+                <div id="tip-${idx}" style="display:none; position:absolute; bottom:22px; left:50%; transform:translateX(-50%); background:#1A1F2C; color:#FFFFFF; font-size:11px; padding:6px 10px; border-radius:6px; width:200px; z-index:10; line-height:1.4; text-align:left;">
+                  Estimated total annualized return since fund inception. Combines NAV appreciation and dividend yield. Source: LankaBangla, May 2026.
+                </div>
+              </div>
             </div>
           </div>
           <div style="margin-top:14px; text-align:right;">
