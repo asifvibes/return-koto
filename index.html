@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZHRMVLEEE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9ZHRMVLEEE');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; base-uri 'self'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>ReturnKoto? | Bangladeshi Open-End Mutual Fund Return Calculator</title>
+<meta name="description" content="See what a SIP or lump-sum investment in Bangladeshi open-end mutual funds would actually have earned, dividends included. Real NAV history, total return, verified fund fees and details, Shariah filter.">
+<meta property="og:title" content="ReturnKoto? | Open-End Mutual Fund Return Calculator">
+<meta property="og:description" content="What your money would actually have done in Bangladeshi open-end mutual funds. Real history, dividends reinvested, plus verified fees and details for each fund.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://returnkoto.com/">
+<meta property="og:site_name" content="ReturnKoto?">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ReturnKoto? | Bangladesh Mutual Fund Return Calculator">
+<meta name="twitter:description" content="See what your SIP or lump-sum investment in Bangladeshi open-end mutual funds would actually have earned, with verified fees and details.">
+<link rel="canonical" href="https://returnkoto.com/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#27AE60">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#2ECC71;--green-dark:#27AE60;--green-soft:#E8F8F0;
+    --text:#1A1F2C;--muted:#6B7280;--border:#E5E7EB;--bg:#F9FAFB;--card:#FFFFFF;
+    --red:#DC2626;--amber:#B45309;--amber-soft:#FEF3C7;
+    --shadow:0 1px 3px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.04);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:28px 18px 64px}
+  header h1{font-size:26px;font-weight:800;letter-spacing:-.02em}
+  header h1 .beta{font-size:11px;font-weight:700;color:var(--green-dark);background:var(--green-soft);padding:2px 7px;border-radius:999px;vertical-align:middle;margin-left:8px}
+  header p{color:var(--muted);margin-top:4px;font-size:14.5px}
+  .fresh{font-size:12.5px;color:var(--muted);margin-top:9px}
+  .fresh .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:6px;vertical-align:middle}
+  .asof{font-weight:700;color:var(--text)}
+  .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:18px;margin-top:20px}
+  label.fld{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:7px;text-transform:uppercase;letter-spacing:.03em}
+  .amount{position:relative}
+  .amount span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600}
+  input[type=number]{width:100%;padding:13px 14px 13px 30px;border:1px solid var(--border);border-radius:10px;font-size:18px;font-weight:700;font-family:inherit;color:var(--text)}
+  input[type=number]:focus{outline:none;border-color:var(--green)}
+  .seg{display:flex;gap:6px;background:#F1F3F5;border-radius:10px;padding:4px}
+  .seg button{flex:1;border:none;background:transparent;padding:9px 8px;border-radius:7px;font-family:inherit;font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer}
+  .seg button.on{background:#fff;color:#1F9E57;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+  #horizon button.on{background:#1F9E57;color:#fff}
+  #horizon button{padding:9px 4px;font-size:12.5px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+  .toggle-row .t{font-size:14px;font-weight:600}
+  .toggle-row .s{font-size:12px;color:var(--muted)}
+  .sw{position:relative;width:46px;height:26px;flex:none}
+  .sw input{opacity:0;width:0;height:0}
+  .sw .sl{position:absolute;inset:0;background:#E5E7EB;border-radius:999px;transition:.25s;cursor:pointer}
+  .sw .sl:before{content:"";position:absolute;height:20px;width:20px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.25s}
+  .sw input:checked + .sl{background:var(--green)}
+  .sw input:checked + .sl:before{transform:translateX(20px)}
+  .headline{margin-top:22px;font-size:15px;color:var(--text);background:var(--green-soft);border:1px solid #CDEEDB;border-radius:12px;padding:14px 16px}
+  .headline b{font-weight:700}
+  .row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--border);border-radius:12px;background:var(--card);margin-top:10px}
+  .row.best{position:relative;overflow:hidden;border-color:#E4B73C;background:linear-gradient(118deg,#FFFBEE,#FFFFFF 60%);box-shadow:0 0 0 2px #F4DE9C,0 8px 24px -10px rgba(190,145,25,.55)}
+  .row.best::after{content:"";position:absolute;top:0;left:-70%;width:48%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-20deg);animation:bestSheen 6s ease-in-out infinite;pointer-events:none}
+  @keyframes bestSheen{0%,70%{left:-70%}100%{left:140%}}
+  .row.best .rank{width:auto;overflow:visible}
+  .medal{position:relative;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:linear-gradient(145deg,#F8D77E,#D7A11E);color:#6E4400;font-weight:800;font-size:14px;box-shadow:0 2px 6px rgba(176,128,20,.55),inset 0 1px 1px rgba(255,255,255,.6)}
+  .medal .crown{position:absolute;top:-12px;left:50%;transform:translateX(-50%);width:18px;height:18px;fill:#E7AE2C;filter:drop-shadow(0 1px 1px rgba(150,100,10,.4))}
+  .bestbadge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;color:#8A5E04;background:linear-gradient(145deg,#FCEAA6,#F3CD5F);border:1px solid #E6BC4C;border-radius:999px;padding:2px 9px;letter-spacing:.02em;box-shadow:0 1px 3px rgba(176,128,20,.4)}
+  .bestbadge svg{width:12px;height:12px;fill:currentColor}
+  .rank{font-size:13px;font-weight:700;color:var(--muted);width:20px;text-align:center;flex:none}
+  .fund{flex:1;min-width:0}
+  .fund .nm{font-weight:700;font-size:15px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .fundlink{color:inherit;text-decoration:none}
+  .fundlink:hover{color:#1F9E57;text-decoration:underline}
+  .fundlink::after{content:"\2197";font-size:.78em;font-weight:800;color:#1F9E57;margin-left:3px;vertical-align:top}
+  .tag{font-size:10.5px;font-weight:700;padding:2px 6px;border-radius:5px;letter-spacing:.02em}
+  .tag.sh{background:#EEF2FF;color:#4338CA}
+  .tag.cv{background:#F3F4F6;color:#6B7280}
+  .tag.dv{background:var(--green-soft);color:var(--green-dark)}
+  .tag.est{background:#F3F4F6;color:#6B7280}
+  .tag.ok{background:#ECFDF5;color:#047857}
+  .tag.income{background:#E0F2FE;color:#0369A1}
+  .tag.growth{background:#DCFCE7;color:#15803D}
+  .tag.balanced{background:#E2E8F0;color:#475569}
+  .why{margin-top:8px;font-size:11.5px;line-height:1.5;color:#475569;background:#F1F5F9;border-radius:6px;padding:7px 10px}
+  .why b{font-weight:700;color:#334155}
+  .why.caveat{color:#475569;background:#F1F5F9}
+  .why.caveat b{color:#334155}
+  .fund .sub{font-size:12px;color:var(--muted);margin-top:3px}
+  .fsz{font-weight:600;color:#374151}
+  .nums{text-align:right;flex:none}
+  .nums .fv{font-weight:800;font-size:16px}
+  .nums .gn{font-size:12.5px;font-weight:600;margin-top:2px}
+  .nums .gn.pos{color:#15803d}
+  .nums .gn.neg{color:var(--red)}
+  .pos{color:var(--green-dark)} .neg{color:var(--red)}
+  .ann{font-size:11.5px;color:var(--muted);margin-top:2px}
+  .sec-title{font-size:18px;font-weight:800;letter-spacing:-.01em;margin:30px 0 12px}
+  .eyebrow{display:inline-block;font-size:13px;font-weight:800;color:var(--green-dark);letter-spacing:-.01em;margin:0 0 2px}
+  .herostat{margin-bottom:9px}
+  .hs-main{font-size:25px;font-weight:800;letter-spacing:-.02em;color:var(--text);line-height:1.15}
+  .hs-main b{color:var(--green-dark)}
+  .hs-op{font-weight:400;color:var(--muted)}
+  .hs-sub{font-size:13.5px;font-weight:600;margin-top:3px;color:var(--muted)}
+  .hs-pct{font-weight:700}.hs-pct.pos{color:#15803d}.hs-pct.neg{color:var(--red)}
+  .hs-gain{font-style:italic}
+  .hs-fund{text-decoration:underline;text-underline-offset:2px}.hs-fund:hover{color:var(--text)}
+  .hl-sentence{font-size:14px;color:var(--text);line-height:1.5}
+  .hl-note{font-size:11.5px;color:var(--muted);margin:9px 0 0;text-align:center}
+  .cbar-fill.pos{opacity:.5}
+  details.why{margin-top:8px;font-size:11.5px;line-height:1.5;color:#475569}
+  details.why>summary{cursor:pointer;display:inline-flex;align-items:center;gap:5px;font-weight:700;color:#475569;background:#F1F5F9;border-radius:6px;padding:4px 9px;list-style:none;width:fit-content}
+  details.why>summary::-webkit-details-marker{display:none}
+  details.why>summary::after{content:"\203A";font-size:13px;opacity:.55;transform:rotate(90deg)}
+  details.why[open]>summary{margin-bottom:6px}
+  details.why.caveat>summary{color:#7c5a1e;background:#F4EFE4}
+  .note{font-size:12.5px;color:var(--muted);margin-top:14px}
+  .chartpanel{padding:16px 18px}
+  .chart-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+  .chart-head .ct{font-size:14px;font-weight:700}
+  .chart-head .cs{font-size:12px;color:var(--muted);margin-top:2px}
+  .cseg{display:flex;gap:4px;background:#F1F3F5;border-radius:8px;padding:3px;flex:none}
+  .cseg button{border:none;background:transparent;padding:6px 11px;border-radius:6px;font-family:inherit;font-size:11.5px;font-weight:600;color:var(--muted);cursor:pointer}
+  .cseg button.on{background:#fff;color:#1F9E57;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+  .cbar-row{display:grid;grid-template-columns:150px 1fr 94px;align-items:center;gap:10px;min-height:30px}
+  .cbar-row.best .cbar-name{font-weight:800}
+  .cbar-name{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:6px}
+  .dot{width:7px;height:7px;border-radius:50%;flex:none}
+  .dot.sh{background:#6366F1}.dot.cv{background:#9CA3AF}
+  .cbar-track{position:relative;height:13px;background:#F3F4F6;border-radius:4px}
+  .cbar-zero{position:absolute;top:-3px;bottom:-3px;width:1px;background:#CBD5E1}
+  .cbar-fill{position:absolute;top:0;bottom:0;border-radius:4px;transition:left .25s,width .25s}
+  .cbar-fill.pos{background:var(--green)}
+  .cbar-fill.neg{background:var(--red)}
+  .cbar-row.best .cbar-fill.pos{background:var(--green-dark)}
+  .cbar-tick{position:absolute;top:-3px;bottom:-3px;width:2px;background:#374151;opacity:.55}
+  .cbar-val{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;line-height:1.15}
+  .cbar-num{font-size:12.5px;font-weight:700}
+  .cbar-num.pos{color:#15803d}.cbar-num.neg{color:var(--red)}
+  .cbar-dur{font-size:10px;font-weight:600;color:var(--muted);margin-top:1px}
+  .cleg{font-size:11.5px;color:var(--muted);margin-top:10px}
+  .showall{margin-top:12px;border:1px solid var(--border);background:#fff;color:var(--green-dark);font-family:inherit;font-size:12.5px;font-weight:700;padding:9px 14px;border-radius:8px;cursor:pointer;width:100%}
+  .showall:hover{background:var(--green-soft);border-color:var(--green)}
+  .lcmore{margin-top:2px}
+  .listmore{margin-top:14px;text-align:center}
+  .lmcount{display:block;font-size:12.5px;color:var(--muted);margin-bottom:9px}
+  .lmcount b{color:var(--text)}
+  #linechart svg{width:100%;height:auto;display:block}
+  .lcleg{display:flex;flex-wrap:wrap;gap:6px 13px;margin-top:10px;font-size:11px}
+  .lcleg .li{display:flex;align-items:center;gap:6px;color:var(--muted);white-space:nowrap;cursor:pointer;user-select:none}
+  .lcleg .li.off{opacity:.55}
+  .lcleg .li.inv .cbx{border-radius:2px}
+  .lcleg .li.inv b,.lcleg .li.inv{font-weight:600}
+  .lcleg .lcbulk{flex-basis:100%;display:flex;gap:8px;align-items:center;margin:1px 0 3px}
+  .lcleg .lcbulk button{font-family:inherit;font-size:11px;font-weight:700;color:var(--green-dark);background:none;border:0;padding:0;cursor:pointer}
+  .lcleg .lcbulk button[data-bulk="none"]{color:var(--muted)}
+  .lcleg .lcbulk button:hover{text-decoration:underline}
+  .lcleg .lcbulk .bsep{color:var(--border)}
+  .lccmp{display:flex;flex-wrap:wrap;align-items:center;gap:7px 8px;margin-top:12px;padding:9px 12px;background:#F8FAFC;border:1px solid var(--line);border-radius:11px}
+  .lccmp .cmplbl{font-size:10.5px;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:.05em;margin-right:3px}
+  .cmppill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-family:inherit;color:var(--muted);background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:4px 12px;cursor:pointer;transition:background .12s,border-color .12s,color .12s;white-space:nowrap}
+  .cmppill .pdot{width:9px;height:9px;border-radius:50%;background:var(--cc);opacity:.45;transition:opacity .12s}
+  .cmppill:hover{border-color:var(--cc)}
+  .cmppill.on{color:#fff;background:var(--cc);border-color:var(--cc);font-weight:600}
+  .cmppill.on .pdot{background:#fff;opacity:1}
+  .cmppill[data-key="crowdfunding"].on{background:#c0392b;border-color:#c0392b}
+  .cmppill[data-key="crowdfunding"].on::before{content:"🤡 "}
+  .cmppill[data-key="crowdfunding"].on .pdot{display:none}
+  #cfPanel{margin-top:10px;text-align:center}
+  #cfPanel img{max-width:100%;border-radius:12px;display:block;margin:0 auto}
+  #cfFallback{padding:6px 0}
+  .cfmsg{font-size:14px;color:var(--muted);margin:14px 4px 2px;line-height:1.55}
+  .cfmsg a{color:var(--green);font-weight:700}
+  .lcleg .cbx{width:14px;height:14px;border:1.6px solid #C7CCD4;border-radius:3px;flex:none;position:relative;background:#fff;box-sizing:border-box}
+  .lcleg .li:not(.off) .cbx{background:var(--cc);border-color:var(--cc)}
+  .lcleg .li:not(.off) .cbx::after{content:"";position:absolute;left:4px;top:1px;width:3.5px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+  .chartpanel{position:relative}
+  #lctip{position:absolute;pointer-events:none;transform:translate(-50%,-145%);background:#111827;color:#fff;font-size:11px;font-weight:600;padding:3px 7px;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity .08s;z-index:6}
+  #lctip.on{opacity:1}
+  #linechart svg path{stroke-linejoin:round;stroke-linecap:round}
+  .lcsel{font-size:12px;color:var(--muted);min-height:17px;margin-top:6px}
+  .lcsel b{color:var(--text)}
+  .lcsel .x{color:var(--green);cursor:pointer;font-weight:600;margin-left:8px}
+  .lchit{cursor:pointer}
+  .lcleg .li b{color:var(--text);font-weight:600}
+  .lcleg .sw{width:15px;border-top:3px solid;display:inline-block}
+  .ratesrow{margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+  .rateshead{font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:10px}
+  .rateshead .ratesub{font-weight:500;color:var(--muted)}
+  .rategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .ratefield{display:flex;flex-direction:column;gap:4px;background:#F8FAFC;border:1px solid var(--border);border-radius:10px;padding:8px 11px;transition:border-color .15s,background .15s}
+  .ratefield:focus-within{border-color:var(--green);background:#fff}
+  .ratefield label{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--muted)}
+  .ratefield .rdot{width:7px;height:7px;border-radius:50%;flex:none}
+  .ratefield .inwrap{display:flex;align-items:baseline;gap:1px}
+  .ratefield input{width:44px;border:none;background:transparent;padding:0;font-family:inherit;font-size:16px;font-weight:700;color:var(--text);text-align:right;-moz-appearance:textfield}
+  .ratefield input:focus{outline:none}
+  .ratefield input::-webkit-outer-spin-button,.ratefield input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .ratefield .pct{font-size:13px;font-weight:600;color:var(--muted)}
+  .betatag{display:inline-block;position:relative;overflow:hidden;font-size:11.5px;font-weight:800;letter-spacing:.08em;color:#fff;background:linear-gradient(135deg,#FF7A3D,#F7409B);padding:3px 9px;border-radius:7px;margin-right:9px;vertical-align:middle;transform:rotate(-6deg);box-shadow:0 2px 9px rgba(247,64,155,.45);animation:betaPulse 1.6s ease-in-out infinite,betaWiggle 3.2s ease-in-out infinite}
+  .betatag::after{content:"";position:absolute;top:0;left:-85%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:betaSheen 2.8s ease-in-out infinite;pointer-events:none}
+  .betatag:hover{animation:none;transform:rotate(0deg) scale(1.18);box-shadow:0 6px 22px rgba(247,64,155,.9)}
+  @keyframes betaPulse{0%,100%{box-shadow:0 2px 9px rgba(247,64,155,.45)}50%{box-shadow:0 5px 20px rgba(247,64,155,.9)}}
+  @keyframes betaSheen{0%,55%{left:-85%}100%{left:165%}}
+  @keyframes betaWiggle{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(-1deg) scale(1.07)}}
+  .learncta{display:block;margin-top:22px;padding:13px 16px;background:var(--green-soft);border:1px solid #CDEEDB;border-radius:12px;color:var(--green-dark);font-weight:700;font-size:14px;text-decoration:none;transition:background .12s}
+  .learncta:hover{background:#D6F0E2}
+  @media(max-width:560px){.cbar-row{grid-template-columns:116px 1fr 80px;gap:8px}.cbar-name{font-size:11px}.cbar-num{font-size:11.5px}.cbar-dur{font-size:9.5px}}
+  .miss{display:flex;align-items:center;gap:11px;flex-wrap:wrap;font-size:13px;font-weight:600;color:#475569;background:#F1F5F9;border:1px solid #E2E8F0;border-left:4px solid #94A3B8;border-radius:10px;padding:12px 14px;margin-top:12px}
+  .miss .miss-ic{flex:none;width:26px;height:26px;color:#94A3B8}
+  .miss .miss-ic svg{width:26px;height:26px;fill:currentColor}
+  .miss .miss-tx{flex:1;min-width:170px;line-height:1.4}
+  .miss .miss-tx b{color:#334155;font-weight:800}
+  .maxlink{font:inherit;font-weight:800;color:var(--green-dark);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+  .maxlink:hover{color:#1E8A4C}
+  .seg button.flash,.cseg button.flash{animation:segFlash .85s ease-in-out 2}
+  @keyframes segFlash{0%,100%{box-shadow:inset 0 0 0 0 rgba(39,174,96,0)}50%{box-shadow:inset 0 0 0 3px rgba(39,174,96,.9)}}
+  .disc{font-size:12px;color:var(--muted);margin-top:22px;border-top:1px solid var(--border);padding-top:16px}
+  .disc b{color:var(--text)}
+  .eduflag{display:inline-flex;align-items:center;gap:7px;margin-top:13px;font-size:12.5px;font-weight:700;color:var(--amber);background:var(--amber-soft);border-radius:999px;padding:6px 14px;line-height:1.25}
+  .eduflag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber);flex:none}
+  .edunote{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:13px;font-size:11.5px;font-weight:600;color:var(--amber);text-align:center}
+  .edunote::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber);flex:none}
+  .rick{margin-top:22px;padding:22px 22px 24px;background:var(--green-soft);border:1px solid #CDEEDB;border-radius:14px;text-align:center}
+  .rick p{font-size:14px;color:var(--text);line-height:1.65;margin:0 auto;max-width:580px}
+  .rick{margin:36px 0 10px;text-align:center}
+  .rick .rickbtn{position:relative;overflow:hidden;display:inline-block;margin-top:16px;background:linear-gradient(135deg,#2EC06F,#1F9E57);color:#fff;font-weight:800;font-size:14.5px;font-family:inherit;padding:12px 26px;border:0;border-radius:999px;text-decoration:none;cursor:pointer;transition:transform .15s;animation:rickPulse 1.9s ease-in-out infinite}
+  .rick .rickbtn::after{content:"";position:absolute;top:0;left:-85%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg);animation:rickSheen 3.4s ease-in-out infinite;pointer-events:none}
+  .rick .rickbtn .arr{display:inline-block;animation:rickArrow 1.1s ease-in-out infinite}
+  .rick .rickbtn:hover{transform:scale(1.07) rotate(-1.5deg)}
+  @keyframes rickPulse{0%,100%{box-shadow:0 3px 11px rgba(39,174,96,.4)}50%{box-shadow:0 6px 24px rgba(39,174,96,.78)}}
+  @keyframes rickSheen{0%,55%{left:-85%}100%{left:155%}}
+  @keyframes rickArrow{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+  .hrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .hrow h1{margin:0}
+  .learnbtn{flex:none;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#fff;background:var(--green-dark);border:1px solid var(--green-dark);border-radius:999px;padding:7px 14px;text-decoration:none;white-space:nowrap;transition:background .12s,transform .12s}
+  .learnbtn:hover{background:#1f9853;transform:translateY(-1px)}
+  .support{margin-top:22px;padding:22px 22px 24px;background:var(--card);border:1px solid var(--border);border-radius:14px;text-align:center}
+  .support h3{font-size:16px;color:var(--text);margin:0 0 8px;font-weight:800}
+  .support .sptext{font-size:14px;color:var(--muted);line-height:1.6;margin:0 auto;max-width:580px}
+  .support .supacts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+  .support .btn-coffee,.support .btn-book{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:700;padding:11px 20px;border-radius:999px;text-decoration:none;transition:transform .12s,background .12s}
+  .support .btn-coffee{color:#fff;background:linear-gradient(135deg,#E8A93B,#D98E24);border:0;box-shadow:0 4px 14px rgba(217,142,36,.32)}
+  .support .btn-coffee:hover{filter:brightness(1.05);transform:translateY(-1px)}
+  .support .btn-book{color:var(--muted);background:transparent;border:1.5px solid var(--border)}
+  .support .btn-book:hover{border-color:var(--green-dark);color:var(--green-dark)}
+  .support .supnote{margin-top:13px;font-size:11.5px;color:var(--muted)}
+  .connect{margin-top:26px;padding-top:20px;border-top:1px solid var(--border);text-align:center}
+  .connect .ctitle{font-size:13.5px;font-weight:800;color:var(--text)}
+  .connect .csub{font-size:12.5px;color:var(--muted);margin-top:3px}
+  .connect .usedby{margin-top:16px;font-size:12.5px;color:var(--muted);line-height:1.5}
+  .connect .usedby b{color:var(--text);font-weight:700}
+  .connect .usedby .st-note{color:var(--muted);font-weight:400;font-size:11px}
+  .connect .clinks{display:flex;justify-content:center;gap:12px;margin-top:14px}
+  .connect .clinks a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--muted);transition:color .14s,background .14s,border-color .14s,transform .14s}
+  .connect .clinks a:hover{color:#fff;transform:translateY(-2px)}
+  .connect .clinks a svg{width:19px;height:19px;fill:currentColor}
+  .connect .clinks a.fb:hover{background:#1877F2;border-color:#1877F2}
+  .connect .clinks a.yt:hover{background:#FF0000;border-color:#FF0000}
+  .connect .clinks a.ig:hover{background:#E1306C;border-color:#E1306C}
+  .connect .clinks a.tt:hover{background:#111;border-color:#111}
+  .copyr{margin-top:18px;font-size:11.5px;color:var(--muted);text-align:center}
+  .sources{margin-top:14px;border:1px solid var(--border);border-radius:10px;background:var(--card)}
+  .sources summary{cursor:pointer;padding:13px 16px;font-size:13px;font-weight:700;color:var(--text);list-style:none;display:flex;align-items:center;justify-content:space-between}
+  .sources summary::-webkit-details-marker{display:none}
+  .sources summary .pm{font-size:18px;color:var(--muted);font-weight:400;transition:transform .2s}
+  .sources[open] summary .pm{transform:rotate(45deg)}
+  .src-body{padding:2px 16px 16px;font-size:12.5px;color:var(--muted);line-height:1.65}
+  .src-body a{color:var(--green-dark);text-decoration:none}
+  .src-body a:hover{text-decoration:underline}
+  .src-body h4{font-size:11px;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 5px}
+  .fdtog{margin-top:9px;display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--green-dark);background:#EFFAF3;border:1px solid #CDEBD8;border-radius:8px;padding:5px 11px;cursor:pointer;transition:background .15s,border-color .15s}
+  .fdtog:hover{background:#E3F6EA;border-color:#A9DCBC}
+  .fdtog .fchev{font-size:10px;transition:transform .2s}
+  .fdtog[aria-expanded="true"] .fchev{transform:rotate(180deg)}
+  .fdet{flex-basis:100%;width:100%;border-top:1px dashed var(--border);padding-top:13px;margin-top:2px;animation:fdIn .25s ease}
+  .fdet[hidden]{display:none}
+  @keyframes fdIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+  .fdgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px 20px}
+  .fdrow{display:flex;flex-direction:column;gap:2px}
+  .fdk{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+  .fdv{font-size:12.5px;color:#1F2937;line-height:1.45}
+  .fdfee{grid-column:1/-1;background:linear-gradient(135deg,#EFFAF3,#FBFEFC);border:1px solid #CDEBD8;border-radius:9px;padding:9px 12px}
+  .fdfee .fdk{color:var(--green-dark)}
+  .fdfee .fdv{font-weight:800;font-size:14px;color:#13301F}
+  .fdnote{margin-top:12px;font-size:10.8px;color:var(--muted);line-height:1.5}
+  .fdlim{font-size:12px;color:#475569;background:#F1F5F9;border-radius:8px;padding:10px 12px;line-height:1.5}
+  @media(max-width:560px){.fdgrid{grid-template-columns:1fr}}
+  .sortbar{margin-top:20px}
+  .sortlbl{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:7px}
+  .sortseg button{font-size:12px;padding:8px 5px}
+  .src-body p{margin:0}
+  .src-body b{color:var(--text);font-weight:700}
+  @media(max-width:560px){
+    .wrap{padding:22px 14px 56px}
+    header h1{font-size:22px}
+    header p{font-size:14px}
+    .panel{padding:16px}
+    .chartpanel{padding:14px}
+    .seg button{padding:11px 6px}
+    #horizon button{padding:11px 3px}
+    .sortseg button{padding:10px 4px}
+    .fdtog{padding:7px 12px}
+    .rick{padding:20px 16px 22px}
+    .support{padding:20px 16px 22px}
+    .rick p,.support .sptext{font-size:13.5px}
+  }
+  @media(max-width:400px){
+    .cbar-row{grid-template-columns:100px 1fr 72px;gap:7px}
+  }
+  .rk-nav{position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #eef1ef}
+.rk-logo{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:17px;color:#0f1b14;text-decoration:none;letter-spacing:-.01em}
+.rk-logo svg{width:23px;height:23px;flex:none}
+.rk-beta{font-size:8.5px;font-weight:800;letter-spacing:.06em;color:#fff;background:linear-gradient(135deg,#FF7A3D,#F7409B);padding:2px 5px;border-radius:5px;align-self:flex-start;margin-left:1px;animation:rkBetaPulse 1.9s ease-in-out infinite}
+@keyframes rkBetaPulse{0%,100%{opacity:1}50%{opacity:.55}}
+.rk-links{display:flex;align-items:center;gap:20px}
+.rk-links a{font-size:14px;font-weight:600;color:#3a4a40;text-decoration:none;transition:color .12s}
+.rk-links a:hover{color:#1F9E57}
+.rk-foot{margin-top:40px;background:#f4f7f5;border-top:1px solid #e6ece8}
+.rk-foot-in{max-width:680px;margin:0 auto;padding:34px 20px 38px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.rk-foot .rk-logo{font-size:18px}
+.rk-foot-links{display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+.rk-foot-links a{color:#3a4a40;text-decoration:none;font-size:14px;font-weight:600}
+.rk-foot-links a:hover{color:#1F9E57}
+.rk-coffee{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:700;padding:10px 20px;border-radius:999px;text-decoration:none;color:#7a5b12;background:#FCEFC7;border:1.5px solid #F4D58D;transition:transform .12s,background .12s}
+.rk-coffee:hover{background:#FBE7A8;transform:translateY(-1px)}
+.rk-social{display:flex;gap:14px;justify-content:center}
+.rk-social a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid #e0e8e3;color:#5b6b61;transition:color .12s,border-color .12s,transform .12s}
+.rk-social a:hover{color:#1F9E57;border-color:#1F9E57;transform:translateY(-1px)}
+.rk-social svg{width:17px;height:17px;fill:currentColor}
+.rk-foot-note{font-size:12px;color:#7c8c82;line-height:1.7;margin:2px 0 0;max-width:520px}
+@media(max-width:560px){.rk-nav{padding:11px 15px}.rk-logo{font-size:16px}.rk-links{gap:15px}.rk-links a{font-size:13.5px}.rk-foot-in{padding:28px 18px 32px;gap:14px}.rk-foot-links{gap:16px}}
+.browseall{margin-top:26px}
+.ba-head{margin-bottom:13px}
+.ba-title{font-size:17px;margin:0;color:var(--text)}
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ba-link{display:flex;flex-direction:column;gap:6px;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--text);transition:border-color .12s,transform .12s,box-shadow .12s}
+.ba-link:hover{border-color:#1F9E57;transform:translateY(-1px);box-shadow:0 6px 16px rgba(31,158,87,.1)}
+.ba-nm{font-weight:700;font-size:13.5px;line-height:1.3}
+.ba-ret{font-size:13px;font-weight:700;color:#1F9E57}
+.ba-allbtn{display:block;text-align:center;margin-top:12px;padding:13px;border-radius:12px;background:#fff;border:1.5px solid #1F9E57;color:#1F9E57;font-weight:700;font-size:14px;text-decoration:none;transition:background .12s}
+.ba-allbtn:hover{background:#f1f8f4}
+@media(max-width:560px){.ba-grid{grid-template-columns:1fr;gap:8px}.ba-link{flex-direction:row;justify-content:space-between;align-items:center;padding:13px}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"ReturnKoto?","alternateName":"ReturnKoto?","url":"https://returnkoto.com/","description":"Historical return calculator for Bangladeshi open-end mutual funds. See what a SIP or lump-sum investment would actually have earned, with dividends reinvested and verified fund fees and details.","applicationCategory":"FinanceApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BDT"},"featureList":["Historical SIP and lump-sum returns","Total return with dividends reinvested","Verified management fees, trustee and custodian for each fund","Shariah-compliant filter","Comparison with Sanchayapatra, DPS, FDR, gold and inflation"],"areaServed":{"@type":"Country","name":"Bangladesh"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How are mutual fund returns calculated on ReturnKoto?","acceptedAnswer":{"@type":"Answer","text":"ReturnKoto? replays your investment over each fund's real NAV history (weekly snapshots) and reinvests cash dividends, so every figure is a total return. Lump sum buys units once at the starting NAV; monthly SIP buys units each month. Annualized returns use CAGR for lump sum and money-weighted IRR for SIP."}},{"@type":"Question","name":"What fees do Bangladeshi open-end mutual funds charge?","acceptedAnswer":{"@type":"Answer","text":"Most charge an annual management fee, often tiered from about 2.5% down to 1% of net asset value as the fund grows, while a few charge a flat rate near 0.7% to 1%. Funds also pay small regulated trustee, custodian and BSEC fees. ReturnKoto? shows each fund's exact fee, read from its official BSEC prospectus."}},{"@type":"Question","name":"Which Bangladeshi mutual fund has the best return?","acceptedAnswer":{"@type":"Answer","text":"It depends on the time period and whether you invest monthly or in a lump sum. ReturnKoto? ranks every fund by historical total return for the settings you choose and marks the top performer. Past performance does not guarantee future results."}},{"@type":"Question","name":"What is the difference between SIP and lump-sum investing?","acceptedAnswer":{"@type":"Answer","text":"A lump sum invests all your money at once. A SIP, or Systematic Investment Plan, invests a fixed amount every month, which spreads your entry price over time. ReturnKoto? compares both side by side on real fund history."}},{"@type":"Question","name":"Are there Shariah-compliant mutual funds in Bangladesh?","acceptedAnswer":{"@type":"Answer","text":"Yes. Several open-end funds are Shariah-compliant, and ReturnKoto? has a one-tap filter to show only those."}},{"@type":"Question","name":"Can I redeem open-end mutual funds any time?","acceptedAnswer":{"@type":"Answer","text":"Open-end funds are redeemable at net asset value on a regular basis (often weekly). Some funds apply a small early-exit charge if a SIP is cancelled within the first one to three years. Each fund's liquidity and any exit fee are shown in its details."}},{"@type":"Question","name":"Can I see everything about one fund?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every fund has its own page with its full returns by period, a NAV growth chart and verified details such as the management fee, trustee and custodian. Open it from the fund's name in the list or from the Funds directory."}},{"@type":"Question","name":"How do I invest in a mutual fund in Bangladesh?","acceptedAnswer":{"@type":"Answer","text":"You first open a BO (Beneficiary Owner) account, since fund units are held in dematerialised form, then open an account with the asset management company or its authorised selling agent and buy units as a one-time lump sum or a monthly SIP. ReturnKoto? shows each fund's historical returns and verified details so you can compare first; it does not sell funds."}},{"@type":"Question","name":"What is the minimum amount needed to invest in a Bangladeshi mutual fund?","acceptedAnswer":{"@type":"Answer","text":"Many asset managers let you start a monthly SIP from around 1,000 taka, while lump-sum minimums vary by fund. Each fund's stated minimum is listed on its own page."}},{"@type":"Question","name":"Do mutual funds in Bangladesh offer a tax rebate?","acceptedAnswer":{"@type":"Answer","text":"Yes, and the 2026-27 budget made them more tax-friendly. It removed the old Tk 5 lakh ceiling that capped how much of a mutual fund investment could earn a rebate, so a much larger investment now qualifies, up to the overall yearly rebate limit (up to Tk 75 lakh of eligible investment, rebated at 10%). Individual dividend income is now taxed at a flat 15% as a final tax. Tax rules change each year, so confirm the current figures with the NBR."}},{"@type":"Question","name":"Can Non-Resident Bangladeshis (NRBs) invest in mutual funds?","acceptedAnswer":{"@type":"Answer","text":"Yes. NRBs can invest in many Bangladeshi open-end mutual funds; check each fund's prospectus for the exact eligibility and process."}},{"@type":"Question","name":"What is the difference between open-end and closed-end mutual funds?","acceptedAnswer":{"@type":"Answer","text":"Open-end funds are bought and redeemed at net asset value (NAV) directly with the fund, on a regular basis. Closed-end funds have a fixed number of units that trade on the stock exchange, where the market price can sit above or below NAV. ReturnKoto? covers open-end funds."}},{"@type":"Question","name":"What is NAV (Net Asset Value)?","acceptedAnswer":{"@type":"Answer","text":"NAV is the per-unit value of a fund's assets after its fees. You buy and redeem open-end units at NAV, and a fund's total return is the change in NAV plus its cash dividends, reinvested."}},{"@type":"Question","name":"How is a mutual fund different from a DPS, Sanchayapatra or fixed deposit?","acceptedAnswer":{"@type":"Answer","text":"A DPS, Sanchayapatra or fixed deposit pays a fixed, pre-set rate. A mutual fund is market-linked, so its return varies and can be higher or lower. ReturnKoto? shows each fund next to Sanchayapatra, DPS, FDR, gold and inflation so you can weigh the trade-off."}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://returnkoto.com/#org","name":"ReturnKoto?","url":"https://returnkoto.com/","logo":"https://returnkoto.com/apple-touch-icon.png","sameAs":["https://www.facebook.com/ReturnKoto","https://www.youtube.com/@ReturnKoto","https://www.instagram.com/returnkoto/","https://www.tiktok.com/@returnkoto"],"description":"Independent, free resource for the real historical returns of Bangladeshi open-end mutual funds, with verified fees and details from official BSEC prospectuses.","areaServed":{"@type":"Country","name":"Bangladesh"},"knowsAbout":["Bangladeshi open-end mutual funds","mutual fund NAV","SIP investing","total return","Shariah-compliant mutual funds","Sanchayapatra","DPS","fixed deposit rates"]},{"@type":"WebSite","@id":"https://returnkoto.com/#website","name":"ReturnKoto?","url":"https://returnkoto.com/","inLanguage":"en","publisher":{"@id":"https://returnkoto.com/#org"},"description":"What your money would actually have made in Bangladeshi open-end mutual funds, with dividends reinvested and verified fund fees."},{"@type":"Dataset","@id":"https://returnkoto.com/#dataset","name":"Bangladeshi Open-End Mutual Fund Returns","description":"Historical total returns for Bangladeshi open-end mutual funds, computed from each fund's real weekly NAV history with cash dividends reinvested. Includes lump-sum and monthly-SIP returns over multiple periods, annualized as CAGR for lump sum and money-weighted IRR for SIP, plus each fund's verified management fee, trustee, custodian, sponsor and minimum investment from its official BSEC prospectus.","creator":{"@id":"https://returnkoto.com/#org"},"publisher":{"@id":"https://returnkoto.com/#org"},"isAccessibleForFree":true,"inLanguage":"en","spatialCoverage":{"@type":"Place","name":"Bangladesh"},"keywords":["Bangladesh mutual funds","open-end mutual fund","NAV","total return","SIP","CAGR","IRR","Shariah fund","Sanchayapatra"],"variableMeasured":["Net asset value (NAV)","Total return","Compound annual growth rate (CAGR)","Money-weighted IRR","Management fee","Assets under management"],"creativeWorkStatus":"Updated weekly"}]}
+</script>
+</head>
+<body>
+<nav class="rk-nav">
+<a class="rk-logo" href="/"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="24" fill="#1F9E57"/><path d="M22 66 44 50 58 58 76 34" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 34 76 34 76 50" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>ReturnKoto?<span class="rk-beta">BETA</span></a>
+<div class="rk-links"><a href="/funds/" data-nav="funds">Funds</a><a href="/learn.html" data-nav="learn">Learn</a></div>
+</nav>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">ReturnKoto?</p>
+    <h1>What if you'd actually invested?</h1>
+    <p>Real returns from Bangladeshi open-end mutual funds, with dividends reinvested and each fund's verified fees included.</p>
+    <p class="fresh"><span class="dot"></span>Weekly NAVs as of <span class="asof">18 Jun 2026</span> · refreshed automatically every Friday.</p>
+  </header>
+
+  <div class="panel">
+    <label class="fld">Investment amount</label>
+    <div class="amount"><span>৳</span><input type="number" id="amt" value="5000" min="0" step="500"></div>
+
+    <div class="grid" style="margin-top:16px">
+      <div>
+        <label class="fld">Method</label>
+        <div class="seg" id="method">
+          <button data-m="sip" class="on">Monthly SIP</button>
+          <button data-m="lump">Lump sum</button>
+        </div>
+      </div>
+      <div>
+        <label class="fld">Looking back</label>
+        <div class="seg" id="horizon">
+          <button data-h="6">6 mo</button>
+          <button data-h="12">1 yr</button>
+          <button data-h="24">2 yr</button>
+          <button data-h="36" class="on">3 yr</button>
+          <button data-h="60">5 yr</button>
+          <button data-h="max">Max</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toggle-row">
+      <div><div class="t">Shariah-compliant only</div><div class="s">Show only Halal-certified funds</div></div>
+      <label class="sw"><input type="checkbox" id="sh"><span class="sl"></span></label>
+    </div>
+  </div>
+
+  <div class="headline" id="headline"></div>
+  <p class="hl-note">Educational tool, not financial advice. Past performance doesn&rsquo;t predict the future.</p>
+
+  <div class="panel chartpanel">
+    <div class="chart-head">
+      <div><div class="ct">Compare all funds</div><div class="cs" id="chartsub"></div></div>
+      <div class="cseg" id="chartmetric">
+        <button data-cm="annual" class="on">Annualized</button>
+        <button data-cm="value">Final value</button>
+      </div>
+    </div>
+    <div id="chart"></div>
+    <div class="cleg" id="chartleg" style="display:none">The dark line marks what you invested. Bar past it is profit, short of it is a loss.</div>
+    
+  </div>
+
+  <div class="panel chartpanel">
+    <div class="chart-head">
+      <div><div class="ct">Growth over time</div><div class="cs" id="lcsub">Your investment over time, versus the safe options</div></div>
+    </div>
+    <div id="linechart"></div>
+    <div id="lctip"></div>
+    <div id="lcsel" class="lcsel"></div>
+    <div id="lccompare" class="lccmp"></div>
+    <div id="lclegend" class="lcleg"></div>
+    <div id="lcmore" class="lcmore"></div>
+    <div id="cfPanel" style="display:none">
+    <img id="cfImg" src="/crowdfunding.webp" alt="Crowdfunding outcome in Bangladesh" onerror="this.style.display='none';var f=document.getElementById('cfFallback');if(f)f.style.display='block';">
+    <div id="cfFallback" style="display:none"><svg viewBox="0 0 620 150" style="width:100%;height:auto;display:block"><defs><linearGradient id="cfg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c0392b" stop-opacity=".18"/><stop offset="1" stop-color="#c0392b" stop-opacity="0"/></linearGradient></defs><polygon points="0,150 0,80 120,62 240,46 300,40 360,72 440,108 540,138 620,148 620,150" fill="url(#cfg)"/><polyline points="0,80 120,62 240,46 300,40 360,72 440,108 540,138 620,148" fill="none" stroke="#c0392b" stroke-width="2.6" stroke-linejoin="round"/><text x="612" y="18" text-anchor="end" font-size="13" font-weight="700" fill="#c0392b">&#128201; &#8722;100%</text></svg><div style="font-size:13px;color:#c0392b;font-weight:700;margin-top:2px">Projected value: &#2547;0</div></div>
+    <p class="cfmsg">For crowdfunding, the outcome is always zero in Bangladesh. To check the valid options, go back to the default result <a href="#" id="cfBack">here</a>.</p>
+    </div>
+    <div class="ratesrow">
+      <div class="rateshead">Safe options <span class="ratesub" id="ratesub">· average for the last 3 years, edit to taste</span></div>
+      <div class="rategrid">
+        <div class="ratefield"><label for="rSAN"><span class="rdot" style="background:#DB2777"></span>Sanchayapatra</label><div class="inwrap"><input type="number" id="rSAN" value="11.7" step="0.1" min="0"><span class="pct">%</span></div></div>
+        <div class="ratefield"><label for="rDPS"><span class="rdot" style="background:#0EA5E9"></span>DPS</label><div class="inwrap"><input type="number" id="rDPS" value="9.1" step="0.1" min="0"><span class="pct">%</span></div></div>
+        <div class="ratefield"><label for="rFDR"><span class="rdot" style="background:#475569"></span>FDR</label><div class="inwrap"><input type="number" id="rFDR" value="8.4" step="0.1" min="0"><span class="pct">%</span></div></div>
+        <div class="ratefield"><label for="rINF"><span class="rdot" style="background:#DC2626"></span>Inflation</label><div class="inwrap"><input type="number" id="rINF" value="9.5" step="0.1" min="0"><span class="pct">%</span></div></div>
+        <div class="ratefield"><label for="rGOLD"><span class="rdot" style="background:#D97706"></span>Gold</label><div class="inwrap"><input type="number" id="rGOLD" value="32.8" step="0.1" min="0"><span class="pct">%</span></div></div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sortbar">
+    <span class="sortlbl">Sort funds by</span>
+    <div class="seg sortseg" id="sortby">
+      <button class="on" type="button" data-sort="return">Top return</button>
+      <button type="button" data-sort="aum">Fund size</button>
+      <button type="button" data-sort="age">Track record</button>
+      <button type="button" data-sort="name">Name</button>
+    </div>
+  </div>
+  <div id="results"></div>
+
+  <div id="missing"></div>
+  <section class="browseall">
+    <div class="ba-head"><h2 class="ba-title">Top performers</h2></div>
+    <div class="ba-grid" id="browseall"></div>
+    <a class="ba-allbtn" id="browseallbtn" href="/funds/" data-nav="funds">Browse all funds &#8594;</a>
+  </section>
+  <h2 class="sec-title">Good to know</h2>
+  <a class="learncta" href="/learn.html">New to mutual funds? Read the plain-language guide and glossary &#8594;</a>
+  <details class="sources" style="margin-top:22px">
+    <summary>How this works <span class="pm">+</span></summary>
+    <div class="src-body">
+      <p><b>What's covered.</b> Only open-end mutual funds, the kind you can buy and redeem any day at net asset value (NAV). Exchange-listed closed-end funds are a different product and are not included here.</p>
+      <p style="margin-top:10px"><b>How this works.</b> For each fund we take its real NAV history as weekly snapshots and replay your investment. Lump sum buys units once at the starting NAV. Monthly SIP buys units every month at that month's NAV, and cash dividends are reinvested to buy more units. "Max" uses each fund's full available history, so the start date differs by fund. All figures use each fund's published NAV, which is already net of the fund's management fees, and the fund size shown is its latest assets under management.</p>
+      <p style="margin-top:10px"><b>Total return, including dividends.</b> Figures count both the unit-price change and each fund's cash dividends, reinvested, sourced from the asset managers. A few funds carry a caveat, flagged on their own row: MTB is marked <span class="tag est" style="display:inline">estimated</span> because its undeclared middle-year dividends are set to its consistent ~14% rate; the five VIPB funds are <span class="tag est" style="display:inline">estimated</span> too, anchored to VIPB's own officially published total returns since VIPB does not disclose year-by-year dividends; and the <span class="tag est" style="display:inline">partial</span> funds (IDLC Growth, IDLC Shariah, ICB Islami) have incomplete dividend records, so their totals may be understated. The engine matches the asset managers' own published return figures (for example IDLC Income and Shanta) to within about one percent. Funds built from full, sourced data are marked verified; the few that carry a caveat show the specific reasoning right on their row, so you can always see how we arrived at it.</p>
+      <p style="margin-top:10px"><b>Fund details.</b> Tap "Fund details" on any fund for its management fee, asset manager, sponsor, trustee, custodian, liquidity, any early-exit charge, face value and minimum investment, each read directly from that fund's official BSEC prospectus. Every fund also has its own page, opened from its name in the list or from the <a href="/funds/">Funds directory</a>, with its returns by period, a NAV growth chart and full details. Where a prospectus isn't available, that fund shows limited details rather than anything unverified.</p>
+      <p style="margin-top:10px">Annualized figure is CAGR for lump sum and money-weighted IRR for SIP. Weekly NAVs as of <span class="asof">18 Jun 2026</span>, updated automatically every Friday. Past performance does not guarantee future results.</p>
+    </div>
+  </details>
+  <details class="sources">
+    <summary>Common questions <span class="pm">+</span></summary>
+    <div class="src-body">
+      <p><b>How are mutual fund returns calculated on ReturnKoto?</b><br>ReturnKoto? replays your investment over each fund's real NAV history (weekly snapshots) and reinvests cash dividends, so every figure is a total return. Lump sum buys units once at the starting NAV; monthly SIP buys units each month. Annualized returns use CAGR for lump sum and money-weighted IRR for SIP.</p>
+      <p style="margin-top:10px"><b>What fees do Bangladeshi open-end mutual funds charge?</b><br>Most charge an annual management fee, often tiered from about 2.5% down to 1% of net asset value as the fund grows, while a few charge a flat rate near 0.7% to 1%. Funds also pay small regulated trustee, custodian and BSEC fees. ReturnKoto? shows each fund's exact fee, read from its official BSEC prospectus.</p>
+      <p style="margin-top:10px"><b>Which Bangladeshi mutual fund has the best return?</b><br>It depends on the time period and whether you invest monthly or in a lump sum. ReturnKoto? ranks every fund by historical total return for the settings you choose and marks the top performer. Past performance does not guarantee future results.</p>
+      <p style="margin-top:10px"><b>What is the difference between SIP and lump-sum investing?</b><br>A lump sum invests all your money at once. A SIP, or Systematic Investment Plan, invests a fixed amount every month, which spreads your entry price over time. ReturnKoto? compares both side by side on real fund history.</p>
+      <p style="margin-top:10px"><b>Are there Shariah-compliant mutual funds in Bangladesh?</b><br>Yes. Several open-end funds are Shariah-compliant, and ReturnKoto? has a one-tap filter to show only those.</p>
+      <p style="margin-top:10px"><b>Can I see everything about one fund?</b><br>Yes. Every fund has its own page with its full returns by period, a NAV growth chart and verified details (fee, trustee, custodian and more). Open it from the fund's name in the list, or browse them all in the <a href="/funds/">Funds directory</a>.</p>
+      <p style="margin-top:10px"><b>Can I redeem open-end mutual funds any time?</b><br>Open-end funds are redeemable at net asset value on a regular basis (often weekly). Some funds apply a small early-exit charge if a SIP is cancelled within the first one to three years. Each fund's liquidity and any exit fee are shown in its details.</p>
+      <p style="margin-top:10px"><b>How do I invest in a mutual fund in Bangladesh?</b><br>You first open a BO (Beneficiary Owner) account, since fund units are held in dematerialised form, then open an account with the asset management company or its authorised selling agent and buy units as a one-time lump sum or a monthly SIP. ReturnKoto? shows each fund's historical returns and verified details so you can compare first; it does not sell funds.</p>
+      <p style="margin-top:10px"><b>What is the minimum amount needed to invest?</b><br>Many asset managers let you start a monthly SIP from around &#2547;1,000, while lump-sum minimums vary by fund. Each fund's stated minimum is listed on its own page.</p>
+      <p style="margin-top:10px"><b>Do mutual funds in Bangladesh offer a tax rebate?</b><br>Yes, and the 2026-27 budget made them more tax-friendly. It removed the old &#2547;5 lakh ceiling that capped how much of a mutual fund investment could earn a rebate, so a much larger investment now qualifies, up to the overall yearly rebate limit (up to &#2547;75 lakh of eligible investment, rebated at 10%). Individual dividend income is now taxed at a flat 15%. Tax rules change each year, so confirm the current figures with the NBR.</p>
+      <p style="margin-top:10px"><b>Can Non-Resident Bangladeshis (NRBs) invest in mutual funds?</b><br>Yes. NRBs can invest in many Bangladeshi open-end mutual funds; check each fund's prospectus for the exact eligibility and process.</p>
+      <p style="margin-top:10px"><b>What is the difference between open-end and closed-end mutual funds?</b><br>Open-end funds are bought and redeemed at net asset value (NAV) directly with the fund, on a regular basis. Closed-end funds have a fixed number of units that trade on the stock exchange, where the market price can sit above or below NAV. ReturnKoto? covers open-end funds.</p>
+      <p style="margin-top:10px"><b>What is NAV (Net Asset Value)?</b><br>NAV is the per-unit value of a fund's assets after its fees. You buy and redeem open-end units at NAV, and a fund's total return is the change in NAV plus its cash dividends, reinvested.</p>
+      <p style="margin-top:10px"><b>How is a mutual fund different from a DPS, Sanchayapatra or fixed deposit?</b><br>A DPS, Sanchayapatra or fixed deposit pays a fixed, pre-set rate. A mutual fund is market-linked, so its return varies and can be higher or lower. ReturnKoto? shows each fund next to Sanchayapatra, DPS, FDR, gold and inflation so you can weigh the trade-off.</p>
+    </div>
+  </details>
+
+  <details class="sources">
+    <summary>Sources &amp; data <span class="pm">+</span></summary>
+    <div class="src-body">
+      <h4>Prices &amp; NAV history</h4>
+      Each fund's net asset value is calculated and published by its own asset manager under BSEC rules, often daily, and disclosed publicly. ReturnKoto? uses the weekly NAV to keep the calculation simple and comparable across funds. The multi-year history behind the calculator is compiled from those public disclosures and the market-data sources listed below.
+      <h4>Fund details: fees, trustee, custodian, liquidity</h4>
+      Read directly from each fund's official prospectus filed with the <a href="https://sec.gov.bd/" target="_blank" rel="noopener">Bangladesh Securities and Exchange Commission (BSEC)</a>. Only the figures the prospectus actually states are shown; anything it doesn't disclose is left out rather than guessed.
+      <h4>Safe-option benchmark rates</h4>
+      Sanchayapatra, DPS, FDR, inflation and gold figures are period averages from public sources: the <a href="https://bbs.gov.bd/" target="_blank" rel="noopener">Bangladesh Bureau of Statistics</a> (inflation), <a href="https://www.bb.org.bd/" target="_blank" rel="noopener">Bangladesh Bank</a> and the World Bank (deposit and FDR rates), the <a href="https://nationalsavings.gov.bd/" target="_blank" rel="noopener">Department of National Savings</a> (Sanchayapatra), and gold market prices. They update with the look-back period and stay editable; DPS has no single official rate, so it is approximate.
+      <h4>Asset managers &amp; data providers</h4>
+      <a href="https://idlc.com/aml/" target="_blank" rel="noopener">IDLC Asset Management</a> · <a href="https://www.shanta-aml.com/" target="_blank" rel="noopener">Shanta Asset Management</a> · <a href="https://www.edgeamc.com/" target="_blank" rel="noopener">EDGE AMC</a> · <a href="https://ucbasset.com/" target="_blank" rel="noopener">UCB Asset Management</a> · <a href="https://www.acaml.com/" target="_blank" rel="noopener">Alliance Capital</a> · <a href="https://www.vipbamc.com/" target="_blank" rel="noopener">VIPB Asset Management</a> · <a href="https://ekushwml.com/" target="_blank" rel="noopener">Ekush Wealth Management</a> · <a href="https://sandhaniaml.com/" target="_blank" rel="noopener">Sandhani AML</a> · <a href="https://www.capitecbd.com/" target="_blank" rel="noopener">Capitec Asset Management</a> · <a href="https://www.aims-bangladesh.com/" target="_blank" rel="noopener">AIMS of Bangladesh</a> · <a href="https://lbamcl.com/" target="_blank" rel="noopener">LankaBangla Asset Management</a> · <a href="https://icbamcl.gov.bd/" target="_blank" rel="noopener">ICB AMCL</a> · and many more
+      <h4>Notes</h4>
+      Scope is open-end mutual funds only, the kind you buy and redeem directly at net asset value; exchange-listed closed-end funds are not included. Fund details are verified one fund at a time from official BSEC prospectuses, and only disclosed figures are shown; a couple of funds show limited details where the prospectus is not currently accessible. Dividend totals are added fund by fund from each asset manager's official disclosures. Weekly NAVs as of <span class="asof">18 Jun 2026</span>. Past performance does not guarantee future results. For education only, not financial advice.
+    </div>
+  </details>
+
+  <details class="sources">
+    <summary>Privacy <span class="pm">+</span></summary>
+    <div class="src-body">
+      <p>This website is for educational use only and is not financial advice. No logins, no accounts, and the amount you type stays in your browser, it is never sent anywhere. Only Google Analytics 4 (GA4) collects anonymous usage data to help improve the experience. Support payments are handled externally by SupportKori, with secure checkout via SSLCommerz; ReturnKoto? never sees or stores your payment details.</p>
+    </div>
+  </details>
+  <div id="rickroll" class="rick"></div>
+  <div class="support">
+    <h3>Enjoying ReturnKoto?</h3>
+    <p class="sptext">If this saved you some guesswork, buy me a coffee to keep it free and ad-free. Or book a friendly 1-on-1 session for a second opinion on your savings.</p>
+    <div class="supacts">
+      <a class="btn-coffee" href="https://www.supportkori.com/returnkoto" target="_blank" rel="noopener">&#9749; Buy me a coffee</a>
+      <a class="btn-book" href="https://www.supportkori.com/returnkoto" target="_blank" rel="noopener">Book a 1-on-1 session &#8594;</a>
+    </div>
+    <p class="supnote">Secure checkout via SSLCommerz.</p>
+  </div>
+
+  <div class="connect">
+    <div class="usedby"><b>Platform Stats</b> (Since June 2026): <b class="st-u">680+</b> people have explored their options on ReturnKoto?, <b class="st-c">0+</b> people have learned about the outcome of crowdfunding, and <b class="st-r">1+</b> person has gone looking for the answer, only to be reminded that I'm never gonna give you up. <span class="st-note">[Stats update automatically from GA4 every 24 to 48 hours.]</span></div>
+  </div>
+</div>
+<footer class="rk-foot">
+<div class="rk-foot-in">
+<a class="rk-logo" href="/"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="24" fill="#1F9E57"/><path d="M22 66 44 50 58 58 76 34" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 34 76 34 76 50" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>ReturnKoto?</a>
+<nav class="rk-foot-links"><a href="/">Calculator</a><a href="/funds/" data-nav="funds">Funds</a><a href="/learn.html" data-nav="learn">Learn</a></nav>
+<div class="rk-social"><a href="https://www.facebook.com/ReturnKoto" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a><a href="https://www.youtube.com/@ReturnKoto" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a><a href="https://www.instagram.com/returnkoto/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a><a href="https://www.tiktok.com/@returnkoto" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a></div>
+<a class="rk-coffee btn-coffee" href="https://www.supportkori.com/returnkoto" target="_blank" rel="noopener">&#9749; Buy me a coffee</a>
+<p class="rk-foot-note">Educational tool, not investment advice. Returns are historical and don&rsquo;t predict the future.<br>&copy; 2026 ReturnKoto?</p>
+</div>
+<script>(function(){try{if(new Date()>new Date('2026-07-30'))document.querySelectorAll('.rk-beta').forEach(function(e){e.style.display='none';});}catch(e){}})();</script>
+</footer>
+
+<script>
+let FUNDS=[];
+let DETAILS={};
+let sortBy="return";
+const SIP_BASE=5000;
+const SHORT={11132:"EDGE Growth",11168:"EDGE HQ Income",11184:"UCB Income Plus",11109:"MTB Unit Fund",11164:"Shanta Fixed Inc.",11161:"IDLC Income",11106:"IDLC Growth",11190:"VIPB Fixed Inc.",11181:"Ekush Stable",11177:"Sandhani SLIC",11157:"Capitec-IBBL",11100:"ICB Islami",11118:"Shanta Amanah",11133:"IDLC Shariah",11176:"EDGE Al-Amin"};
+const MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+let method="sip", horizon="36", shariah=false, chartMetric="annual", showAllBars=false, showAllLines=false, listLimit=7;
+let lcHidden=new Set(["bSanchayapatra","bDPS","bFDR","bInflation","bGold"]);
+let lcSel=null, lcRows=[];
+const tn=s=>String(s);
+const T={
+ amount:"Investment amount",
+ method:"Method",
+ sip:"Monthly SIP",
+ lump:"Lump sum",
+ invested:"invested",
+ deposits:"deposits",
+ since:"Since",
+ ago:"ago",
+ peryr:"/yr",
+ yr:"yr",
+ yrs:"yrs",
+ shariahTag:"SHARIAH",
+ divtag:"+ dividends",
+ estimated:"estimated",
+ partial:"partial",
+ howgot:"How we got this number:",
+ verified:"verified",
+ hiddenA:"fund",
+ hiddenB:"funds",
+ overLast:"over the last",
+ annPerYr:"Total return per year",
+ endingValue:"Ending value",
+ eachHist:"each fund's own history length"
+};
+const t=k=>(T[k]!=null?T[k]:k);
+
+const fmt=v=>"৳"+tn(Math.round(v).toLocaleString("en-IN"));
+const since=d=>{const p=d.split("-");return MONTHS[+p[1]-1]+" "+tn(p[2]);};
+const yrs=m=>{const y=m/12;const v=(y>=1?(Math.round(y*10)/10):y.toFixed(1));return tn(v)+" "+t(y===1?"yr":"yrs");};
+const PERIODW={"6":"6 months","12":"1 year","24":"2 years","36":"3 years","60":"5 years"};
+const periodWords=h=>PERIODW[h]||((+h)+" months");
+function startSince(months){const n=new Date();const d=new Date(n.getFullYear(),n.getMonth()-months,1);return MONTHS[d.getMonth()]+" "+d.getFullYear();}
+
+function activeKey(f){
+  if(horizon==="max") return f.M;
+  const h=+horizon;
+  return f.H[h]?h:null;
+}
+
+function periodAdj(hz){return periodWords(hz).replace(/s$/,"").replace(" ","-");}
+function fmtNames(a){var n=a.length;if(n===1)return a[0];if(n===2)return a[0]+" and "+a[1];if(n===3)return a[0]+", "+a[1]+", and "+a[2];return a[0]+", "+a[1]+", and "+(n-2)+" more";}
+const PERIODRATES={"6":{SAN:11.8,DPS:9.5,FDR:8.7,INF:9.0,GOLD:3.9},"12":{SAN:11.8,DPS:9.6,FDR:8.9,INF:8.6,GOLD:36.4},"24":{SAN:11.8,DPS:9.5,FDR:8.8,INF:9.3,GOLD:40.0},"36":{SAN:11.7,DPS:9.1,FDR:8.4,INF:9.5,GOLD:32.8},"60":{SAN:11.5,DPS:8.2,FDR:7.3,INF:8.7,GOLD:27.4},"max":{SAN:11.4,DPS:7.9,FDR:6.7,INF:7.1,GOLD:17.3}};
+function applyRates(){var r=PERIODRATES[horizon]||PERIODRATES["36"];var m={rSAN:"SAN",rDPS:"DPS",rFDR:"FDR",rINF:"INF",rGOLD:"GOLD"};for(var id in m){var e=document.getElementById(id);if(e&&r[m[id]]!=null)e.value=r[m[id]];}}
+function render(){
+  const amt=Math.max(0,+document.getElementById("amt").value||0);
+  let pool=FUNDS.filter(f=>!shariah||f.sh);
+  const rows=[]; let missing=0; const missNames=[];
+  for(const f of pool){
+    const key=activeKey(f);
+    if(key==null){missing++;missNames.push(SHORT[f.id]||f.label);continue;}
+    const [lm,lc,sv,sr,si]=f.H[key];
+    let invested,final,annual,monthsUsed=key;
+    if(method==="lump"){invested=amt;final=amt*lm;annual=lc;}
+    else{invested=amt*monthsUsed;final=(amt/SIP_BASE)*sv;annual=si;}
+    rows.push({f,key,invested,final,gain:final-invested,annual,monthsUsed});
+  }
+  rows.sort((a,b)=>b.annual-a.annual);
+
+  const amtB=`<b>${fmt(amt)}</b>`;
+  let banner, hs="";
+  if(!rows.length){
+    banner=`No fund has enough history for this look-back period yet. Try a shorter period or "Max".`;
+  }else{
+    const b0=rows[0], pp=b0.gain>=0;
+    const pct=Math.round(b0.gain/b0.invested*100);
+    let periodTxt;
+    if(horizon==="max"){const yv=Math.round(b0.monthsUsed/12*10)/10;periodTxt=yv+(yv===1?" year":" years");}
+    else{periodTxt=periodWords(horizon);}
+    const bsl=b0.f.label.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+    hs='<div class="herostat"><div class="hs-main">'+fmt(b0.invested)+' <span class="hs-op">'+(pp?'grew to':'became')+'</span> <b>'+fmt(b0.final)+'</b></div><div class="hs-sub"><span class="hs-pct '+(pp?'pos':'neg')+'">'+(pp?'+':'-')+Math.abs(pct)+'%</span> \u00b7 <span class="hs-gain">'+(pp?'+':'-')+fmt(Math.abs(b0.gain))+' in '+periodTxt+'</span> \u00b7 best: <a class="fundlink hs-fund" href="/funds/'+bsl+'.html">'+b0.f.label+'</a></div></div>';
+    if(horizon==="max"){
+      banner = method==="lump"
+        ? `That's a one-time ${amtB} invested at the fund's launch.`
+        : `That's ${amtB} invested every month since the fund's launch.`;
+    }else{
+      const st=startSince(+horizon);
+      banner = method==="lump"
+        ? `That's a one-time ${amtB} invested in <b>${st}</b>.`
+        : `That's ${amtB} invested every month since <b>${st}</b>.`;
+    }
+  }
+  document.getElementById("headline").innerHTML=hs+'<div class="hl-sentence">'+banner+'</div>';
+  var rsub=document.getElementById("ratesub");if(rsub)rsub.textContent=(horizon==="max")?"· long-run average, edit to taste":"· average for the last "+periodWords(horizon)+", edit to taste";
+
+  lcRows=rows;
+  renderChart(rows);
+  renderLineChart(rows);
+  renderList(applySort(rows));
+
+  const miss=document.getElementById("missing");
+  miss.innerHTML = missing? `<div class="miss"><span class="miss-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="miss-tx"><b>${tn(missing)} ${t(missing>1?"hiddenB":"hiddenA")}</b> i.e. ${fmtNames(missNames)} ${missing>1?"are":"is"} too new for the ${periodAdj(horizon)} look-back period, so ${missing>1?"they are":"it is"} sitting out for now. To see ${missing>1?"their":"its"} performance, switch the look-back period to <button type="button" class="maxlink" data-setmax>Max</button>.</span></div>`:"";
+  const rick=document.getElementById("rickroll");
+  if(rick){
+    const ramt=Math.max(0,+document.getElementById("amt").value||0);
+    const perMap={"6":"6 months","12":"1 year","24":"2 years","36":"3 years","60":"5 years"};
+    const perTxt = horizon==="max" ? "their entire history" : "the last "+(perMap[horizon]||"while");
+    const howTxt = method==="sip" ? fmt(ramt)+" every month" : fmt(ramt)+" as a one-time investment";
+    rick.innerHTML = `<p>So now you know what <b>${howTxt}</b> would have grown to over <b>${perTxt}</b>. Still not sure where you should actually invest next?</p><button type="button" class="rickbtn">Show me the answer <span class="arr">→</span></button>`;
+  }
+}
+
+function renderChart(rows){
+  const host=document.getElementById("chart");
+  const sub=document.getElementById("chartsub");
+  const leg=document.getElementById("chartleg");
+  if(!rows.length){host.innerHTML="";sub.textContent="";leg.style.display="none";return;}
+  const metric=chartMetric;
+  const periodTxt = horizon==="max" ? t("eachHist") : (t("overLast")+" "+periodWords(horizon));
+  sub.textContent = (metric==="annual" ? t("annPerYr") : t("endingValue")) + " · " + periodTxt;
+  leg.style.display = metric==="value" ? "block":"none";
+  const shown = showAllBars ? rows : rows.slice(0,7);
+  const vals=shown.map(r=> metric==="annual"? r.annual : r.final);
+  const lo = metric==="annual" ? Math.min(0,...vals) : 0;
+  const hi = metric==="annual" ? Math.max(0,...vals) : Math.max(...vals, ...shown.map(r=>r.invested));
+  const span=(hi-lo)||1;
+  const zeroPct=(0-lo)/span*100;
+  host.innerHTML="";
+  shown.forEach((r,i)=>{
+    const v= metric==="annual"? r.annual : r.final;
+    const vPct=(v-lo)/span*100;
+    let left,width,cls;
+    if(metric==="annual"){
+      if(v>=0){left=zeroPct;width=vPct-zeroPct;cls="pos";}
+      else{left=vPct;width=zeroPct-vPct;cls="neg";}
+    }else{
+      left=0;width=vPct;cls=r.gain>=0?"pos":"neg";
+    }
+    const tick = metric==="value" ? `<div class="cbar-tick" title="Invested: ${fmt(r.invested)}" style="left:${(r.invested-lo)/span*100}%"></div>`:"";
+    const valLabel = metric==="annual" ? `${v>=0?"+":""}${tn(v)}%` : fmt(r.final);
+    const dyr=Math.round(r.monthsUsed/12*10)/10;
+    const durLabel=horizon==="max" ? (tn(dyr)+" "+t(dyr===1?"yr":"yrs")) : "";
+    const nm=SHORT[r.f.id]||r.f.label;
+    const row=document.createElement("div");
+    row.className="cbar-row"+(i===0?" best":"");
+    row.innerHTML=`
+      <div class="cbar-name" title="${r.f.label}"><span class="dot ${r.f.sh?'sh':'cv'}"></span>${nm}</div>
+      <div class="cbar-track">
+        ${metric==="annual"?`<div class="cbar-zero" style="left:${zeroPct}%"></div>`:""}
+        <div class="cbar-fill ${cls}" style="left:${left}%;width:${Math.max(width,0.6)}%"></div>
+        ${tick}
+      </div>
+      <div class="cbar-val"><div class="cbar-num ${cls}">${valLabel}</div>${durLabel?`<div class="cbar-dur">${durLabel}</div>`:""}</div>`;
+    host.appendChild(row);
+  });
+  if(rows.length>7){
+    const more=document.createElement("button");
+    more.className="showall";
+    more.textContent = showAllBars ? "Show top 7 ▴" : ("Show all "+rows.length+" funds ▾");
+    more.addEventListener("click",()=>{showAllBars=!showAllBars;render();});
+    host.appendChild(more);
+  }
+}
+
+function renderLineChart(rows){
+  const host=document.getElementById("linechart"), leg=document.getElementById("lclegend"), sub=document.getElementById("lcsub");
+  const amt=Math.max(0,+document.getElementById("amt").value||0);
+  const isSIP=method==="sip";
+  const esc=str=>String(str).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+  const useRows = showAllLines ? rows : rows.slice(0,3);
+  const series=useRows.map(r=>{const tr=r.f.series&&r.f.series.tr;if(!tr||!tr.length)return null;const wl=Math.min(r.key,tr.length);const seg=tr.slice(tr.length-wl);const b=seg[0]||1;return {f:r.f,p:seg.map(v=>v/b*100),wl};}).filter(Boolean);
+  if(sub) sub.textContent="What your "+fmt(amt)+(isSIP?" every month":" one-time")+" would be worth over time · the dark line is what you invested, everything above it is profit";
+  if(!series.length){host.innerHTML="<div class='note'>No growth series available for this view.</div>";leg.innerHTML="";return;}
+  const maxLen=Math.max(...series.map(s=>s.wl));
+  const gv=id=>{const e=document.getElementById(id);return e?(+e.value||0):0;};
+  const benchDef=[["Sanchayapatra",gv("rSAN"),"#DB2777"],["DPS",gv("rDPS"),"#0EA5E9"],["FDR",gv("rFDR"),"#475569"],["Inflation",gv("rINF"),"#DC2626"],["Gold",gv("rGOLD"),"#D97706"]];
+  const pal=["#16A34A","#2563EB","#9333EA","#DB2777","#F59E0B","#0891B2","#EA580C","#0D9488","#7C3AED","#CA8A04","#059669","#4F46E5","#65A30D","#10B981","#92400E"];
+  const fKey=sr=>"f"+sr.f.id, bKey=nm=>"b"+nm, colOf=i=>i===0?"#15803D":pal[i%pal.length];
+  const fmtK=v=>{const a=Math.abs(v);if(a>=1e7)return "৳"+(v/1e7).toFixed(a>=1e8?0:1)+"Cr";if(a>=1e5)return "৳"+(v/1e5).toFixed(a>=1e6?0:1)+"L";if(a>=1e3)return "৳"+(v/1e3).toFixed(0)+"k";return "৳"+Math.round(v);};
+  const fundVal=p=>{if(!isSIP)return p.map(v=>amt*v/100);const out=[];let s=0;for(let t=0;t<p.length;t++){s+=1/p[t];out.push(amt*p[t]*s);}return out;};
+  const benchVal=r=>{const out=[];if(!isSIP){for(let t=0;t<maxLen;t++)out.push(amt*Math.pow(1+r/100,t/12));return out;}const rm=Math.pow(1+r/100,1/12)-1;let s=0;for(let t=0;t<maxLen;t++){s=s*(1+rm)+1;out.push(amt*s);}return out;};
+  let lg="";
+  const invOff=lcHidden.has("invested");
+  lg+=`<span class="li inv${invOff?' off':''}" data-key="invested"><span class="cbx" style="--cc:#334155"></span>What you invested</span>`;
+  if(showAllLines) lg+=`<span class="lcbulk"><button type="button" data-bulk="all">Select all</button><span class="bsep">·</span><button type="button" data-bulk="none">Clear all</button></span>`;
+  series.forEach((sr,i)=>{const off=lcHidden.has(fKey(sr));lg+=`<span class="li${off?' off':''}" data-key="${fKey(sr)}"><span class="cbx" style="--cc:${colOf(i)}"></span>${i===0?'<b>':''}${SHORT[sr.f.id]||sr.f.label}${i===0?'</b>':''}</span>`;});
+  leg.innerHTML=lg;
+  const cmp=document.getElementById("lccompare");
+  if(cmp){let ch=`<span class="cmplbl">Compare with</span>`;benchDef.forEach(b=>{const on=!lcHidden.has(bKey(b[0]));ch+=`<button class="cmppill${on?' on':''}" data-key="${bKey(b[0])}" style="--cc:${b[2]}"><span class="pdot"></span>${b[0]}</button>`;});ch+=`<button class="cmppill${window.__cf?' on':''}" data-key="crowdfunding" style="--cc:#9aa3af"><span class="pdot"></span>Crowdfunding</button>`;cmp.innerHTML=ch;}
+  const moreEl=document.getElementById("lcmore");
+  if(moreEl) moreEl.innerHTML = rows.length>3 ? `<button class="showall" data-toggleall="1">${showAllLines?"Show top 3 ▴":"Show all "+rows.length+" funds ▾"}</button>` : "";
+  const visS=series.map((sr,i)=>({sr,i,vals:fundVal(sr.p)})).filter(o=>!lcHidden.has(fKey(o.sr)));
+  const visB=benchDef.filter(b=>!lcHidden.has(bKey(b[0]))).map(b=>({nm:b[0],c:b[2],vals:benchVal(b[1])}));
+  const investedVals=isSIP?Array.from({length:maxLen},(_,t)=>amt*(t+1)):Array.from({length:maxLen},()=>amt);
+  const showInv=!lcHidden.has("invested")&&amt>0;
+  if(!visS.length&&!visB.length&&!showInv){host.innerHTML="<div class='note'>Nothing selected. Tap a name below to show it.</div>";return;}
+  let ymin=Infinity,ymax=-Infinity;
+  visS.forEach(o=>o.vals.forEach(v=>{if(v<ymin)ymin=v;if(v>ymax)ymax=v;}));
+  visB.forEach(o=>o.vals.forEach(v=>{if(v<ymin)ymin=v;if(v>ymax)ymax=v;}));
+  if(showInv)investedVals.forEach(v=>{if(v<ymin)ymin=v;if(v>ymax)ymax=v;});
+  if(!isSIP)ymin=Math.min(ymin,amt);
+  if(!isFinite(ymin)||!isFinite(ymax)){host.innerHTML="";return;}
+  const pad=((ymax-ymin)||ymax*0.1||1)*0.06; ymin=Math.max(0,ymin-pad*0.5); ymax=ymax+pad*0.5; if(ymax<=ymin)ymax=ymin+1;
+  const W=700,H=200,pL=52,pR=14,pT=14,pB=26;
+  const X=t=>pL+(maxLen<=1?0:t/(maxLen-1))*(W-pL-pR);
+  const Y=v=>pT+(1-(v-ymin)/((ymax-ymin)||1))*(H-pT-pB);
+  const path=vals=>vals.map((v,t)=>(t?"L":"M")+X(t).toFixed(1)+","+Y(v).toFixed(1)).join("");
+  let s=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
+  const yt=4;
+  for(let i=0;i<=yt;i++){const v=ymin+(ymax-ymin)*i/yt;const yy=Y(v).toFixed(1);s+=`<line x1="${pL}" y1="${yy}" x2="${W-pR}" y2="${yy}" stroke="#EEF0F2"/><text x="${pL-6}" y="${(+yy+3).toFixed(1)}" font-size="9" fill="#9CA3AF" text-anchor="end">${fmtK(v)}</text>`;}
+  if(maxLen-1<12){
+    const last=maxLen-1, ticks=new Set([0]), step=Math.max(1,Math.round(last/4));
+    for(let mo=step;mo<last;mo+=step)ticks.add(mo); ticks.add(last);
+    [...ticks].forEach(mo=>{s+=`<text x="${X(mo).toFixed(1)}" y="${H-9}" font-size="9" fill="#9CA3AF" text-anchor="middle">${mo}m</text>`;});
+  }else{
+    const yy=Math.ceil((maxLen-1)/12);
+    for(let yr=0;yr<=yy;yr++){const t=Math.min(yr*12,maxLen-1);s+=`<text x="${X(t).toFixed(1)}" y="${H-9}" font-size="9" fill="#9CA3AF" text-anchor="middle">${yr}y</text>`;}
+  }
+  if(showInv){const sel=lcSel==="invested";s+=`<path d="${path(investedVals)}" fill="none" stroke="#334155" stroke-width="${sel?3:2}" opacity="${sel?1:0.9}"/>`;}
+  visB.forEach(o=>{const sel=lcSel==="b"+o.nm;s+=`<path d="${path(o.vals)}" fill="none" stroke="${o.c}" stroke-width="${sel?2.6:1.7}" opacity="${sel?1:0.85}"/>`;});
+  visS.slice().reverse().forEach(o=>{const best=o.i===0,sel=lcSel==="f"+o.sr.f.id;s+=`<path d="${path(o.vals)}" fill="none" stroke="${colOf(o.i)}" stroke-width="${sel?3.8:(best?3.2:2.5)}" opacity="1"/>`;});
+  visS.forEach(o=>{const lx=X(o.vals.length-1).toFixed(1),ly=Y(o.vals[o.vals.length-1]).toFixed(1);s+=`<circle cx="${lx}" cy="${ly}" r="${o.i===0?4.5:3.5}" fill="${colOf(o.i)}" stroke="#fff" stroke-width="1.6"/>`;});
+  if(showInv){const lx=X(maxLen-1).toFixed(1),ly=Y(investedVals[maxLen-1]).toFixed(1);s+=`<circle cx="${lx}" cy="${ly}" r="3" fill="#334155" stroke="#fff" stroke-width="1.4"/>`;}
+  visB.forEach(o=>{s+=`<path class="lchit" data-key="b${o.nm}" data-name="${o.nm}" data-col="${o.c}" d="${path(o.vals)}" fill="none" stroke="transparent" stroke-width="16" pointer-events="stroke"/>`;});
+  visS.forEach(o=>{s+=`<path class="lchit" data-key="f${o.sr.f.id}" data-name="${esc(o.sr.f.label)}" data-col="${colOf(o.i)}" d="${path(o.vals)}" fill="none" stroke="transparent" stroke-width="16" pointer-events="stroke"/>`;});
+  if(showInv){s+=`<path class="lchit" data-key="invested" data-name="What you invested" data-col="#334155" d="${path(investedVals)}" fill="none" stroke="transparent" stroke-width="16" pointer-events="stroke"/>`;}
+  s+=`</svg>`;
+  host.innerHTML=s;
+  const selEl=document.getElementById("lcsel");
+  if(selEl){
+    let nm=null,col=null;
+    if(lcSel){
+      const fm=series.find(x=>("f"+x.f.id)===lcSel);
+      if(fm&&!lcHidden.has(lcSel)){nm=fm.f.label;col=colOf(series.indexOf(fm));}
+      else if(lcSel==="invested"&&showInv){nm="What you invested";col="#334155";}
+      else if(lcSel[0]==="b"){const bn=lcSel.slice(1),bd=benchDef.find(b=>b[0]===bn);if(bd&&!lcHidden.has(lcSel)){nm=bn;col=bd[2];}}
+    }
+    selEl.innerHTML = nm ? `<span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${col};margin-right:5px;vertical-align:middle"></span>Highlighting <b>${esc(nm)}</b><span class="x" data-clear="1">clear ✕</span>` : "";
+  }
+}
+
+function applySort(rows){
+  if(sortBy==="return") return rows;
+  const r=rows.slice();
+  if(sortBy==="aum") r.sort((a,b)=>(b.f.aum||0)-(a.f.aum||0));
+  else if(sortBy==="age") r.sort((a,b)=>(b.f.M||0)-(a.f.M||0));
+  else if(sortBy==="name") r.sort((a,b)=>(a.f.label||"").localeCompare(b.f.label||""));
+  return r;
+}
+function detField(k,v){return v?`<div class="fdrow"><span class="fdk">${k}</span><span class="fdv">${v}</span></div>`:"";}
+function buildDetPanel(id,d){
+  if(!d){return `<div class="fdet" id="fdet-${id}" hidden><div class="fdlim">Fees, trustee, custodian and other details come from each fund's official BSEC prospectus. This fund's prospectus isn't available to us yet, so those details aren't shown.</div></div>`;}
+  var fee=d.fee?`<div class="fdrow fdfee"><span class="fdk">Management fee</span><span class="fdv">${d.fee}</span></div>`:"";
+  return `<div class="fdet" id="fdet-${id}" hidden><div class="fdgrid">${fee}${detField("Early-exit fee",d.exit)}${detField("Minimum investment",d.min)}${detField("Liquidity",d.liquidity)}${detField("Asset manager",d.amc)}${detField("Sponsor",d.sponsor)}${detField("Trustee",d.trustee)}${detField("Custodian",d.custodian)}${detField("Face value",d.face)}</div><div class="fdnote">Plus small regulated trustee, custodian and BSEC fees common to all funds. Every figure verified from the fund's official BSEC prospectus.</div></div>`;
+}
+function renderList(rows){
+  const wrap=document.getElementById("results");
+  wrap.innerHTML="";
+  const total=rows.length, shown=Math.min(listLimit,total);
+  rows.slice(0,shown).forEach((r,i)=>{
+    const f=r.f, gpos=r.gain>=0;
+    const isBest=(sortBy==="return"&&i===0);
+    const div=document.createElement("div");
+    div.className="row"+(isBest?" best":"");
+    const aumStr = f.aum?` · Total fund size: <span class="fsz" title="Total assets under management (AUM)">৳${tn(Math.round(f.aum/10).toLocaleString("en-IN"))} cr</span>`:"";
+    const sub = horizon==="max"
+        ? `${t("since")} ${since(f.since)} · ${yrs(f.M)}` + (method==="sip"?` · ${tn(r.monthsUsed)} ${t("deposits")}`:"") + ` · Your investment ${fmt(r.invested)}`
+        : `${t("since")} ${since(f.since)}`;
+    const dvtag = f.div>=3 ? `<span class="tag dv" title="Includes ~${tn(f.div)}%/yr cash dividend, reinvested">${t("divtag")}</span>`:"";
+    const cflag = f.conf!=="complete" ? `<span class="tag est" title="${f.conf==='estimated'?'Estimated figure. See the note below for the basis':'Dividend records partial, so the total return may be understated'}">${t(f.conf)}</span>`:"";
+    const why = f.note ? `<details class="why${f.conf!=="complete"?" caveat":""}"><summary>${t("howgot")}</summary>${f.note}</details>` : "";
+    const rankCell = isBest ? `<span class="medal"><svg class="crown" viewBox="0 0 24 24"><path d="M3 7l4 4 5-7 5 7 4-4-2 11H5z"/></svg>1</span>` : `${i+1}`;
+    const bestBadge = isBest ? `<span class="bestbadge"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.8.6-5.1 4.5 1.5 6.7L12 16.9 6 20.6l1.5-6.7L2.4 8.9l6.8-.6z"/></svg>Top performer</span>` : "";
+    const vtag = f.conf==="complete" ? `<span class="tag ok" title="Built from this fund's real NAV history and any published cash dividends, reinvested. No estimates.">✓ ${t("verified")}</span>` : "";
+    const det=DETAILS[f.id];
+    const sl=f.label.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+    const detToggle = `<button class="fdtog" data-fdet="${f.id}" aria-expanded="false" type="button">Fund details <span class="fchev">▾</span></button>`;
+    const detPanel = buildDetPanel(f.id,det);
+    div.innerHTML=`
+      <div class="rank">${rankCell}</div>
+      <div class="fund">
+        <div class="nm"><a class="fundlink" href="/funds/${sl}.html">${f.label}</a>${bestBadge}
+          ${f.type?`<span class="tag ${f.type.toLowerCase()}">${f.type}</span>`:""}${f.sh?`<span class="tag sh">${t("shariahTag")}</span>`:""}${dvtag}${cflag}${vtag}
+        </div>
+        <div class="sub">${sub}${aumStr}</div>
+        ${why}
+        ${detToggle}
+      </div>
+      <div class="nums">
+        <div class="fv">${fmt(r.final)}</div>
+        <div class="gn ${gpos?"pos":"neg"}">${gpos?"+":""}${fmt(r.gain)}</div>
+        <div class="ann">${r.annual>=0?"+":""}${tn(r.annual)}%${t("peryr")}</div>
+      </div>${detPanel}`;
+    wrap.appendChild(div);
+  });
+  if(total>7){
+    const more=document.createElement("div");
+    more.className="listmore";
+    more.innerHTML=`<span class="lmcount">Showing <b>${tn(shown)}</b> of <b>${tn(total)}</b> funds</span>`
+      + (shown<total ? `<button class="showall" data-listmore="more">Load more funds</button>`
+                     : `<button class="showall" data-listmore="less">Show top 7</button>`);
+    wrap.appendChild(more);
+  }
+}
+
+document.getElementById("method").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;method=b.dataset.m;[...e.currentTarget.children].forEach(x=>x.classList.toggle("on",x===b));
+  const amt=document.getElementById("amt");if(method==="lump"&&+amt.value===5000)amt.value=100000;if(method==="sip"&&+amt.value===100000)amt.value=5000;render();});
+document.getElementById("horizon").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;horizon=b.dataset.h;[...e.currentTarget.children].forEach(x=>x.classList.toggle("on",x===b));applyRates();render();});
+document.getElementById("sortby").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;sortBy=b.dataset.sort;[...e.currentTarget.children].forEach(x=>x.classList.toggle("on",x===b));render();});
+document.getElementById("sh").addEventListener("change",e=>{shariah=e.target.checked;render();});
+document.getElementById("chartmetric").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;chartMetric=b.dataset.cm;[...e.currentTarget.children].forEach(x=>x.classList.toggle("on",x===b));render();});
+document.getElementById("lcmore").addEventListener("click",e=>{if(e.target.closest("[data-toggleall]")){showAllLines=!showAllLines;if(!showAllLines){lcRows.forEach(r=>lcHidden.delete("f"+r.f.id));}render();}});
+document.getElementById("results").addEventListener("click",e=>{const b=e.target.closest("[data-listmore]");if(!b)return;listLimit=b.getAttribute("data-listmore")==="more"?listLimit+10:7;render();});
+document.getElementById("results").addEventListener("click",e=>{const b=e.target.closest("[data-fdet]");if(!b)return;const p=document.getElementById("fdet-"+b.getAttribute("data-fdet"));if(!p)return;if(p.hasAttribute("hidden")){p.removeAttribute("hidden");b.setAttribute("aria-expanded","true");}else{p.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+document.getElementById("amt").addEventListener("input",render);
+document.getElementById("missing").addEventListener("click",e=>{if(e.target.closest("[data-setmax]")){const mb=[...document.querySelectorAll("#horizon button")].find(b=>b.dataset.h==="max");if(mb){mb.click();const seg=document.getElementById("horizon");if(seg)seg.scrollIntoView({behavior:"smooth",block:"center"});mb.classList.add("flash");setTimeout(()=>mb.classList.remove("flash"),1700);}}});
+document.addEventListener("click",e=>{var fb=e.target.closest&&e.target.closest(".seg button,.cseg button");if(fb){fb.classList.add("flash");setTimeout(()=>fb.classList.remove("flash"),1700);}},true);
+["rSAN","rDPS","rFDR","rINF","rGOLD"].forEach(id=>{const e=document.getElementById(id);if(e)e.addEventListener("input",render);});
+document.getElementById("lclegend").addEventListener("click",e=>{const bulk=e.target.closest("[data-bulk]");if(bulk){const all=bulk.getAttribute("data-bulk")==="all";lcRows.forEach(r=>{const k="f"+r.f.id;if(all)lcHidden.delete(k);else lcHidden.add(k);});render();return;}const el=e.target.closest("[data-key]");if(!el)return;const k=el.getAttribute("data-key");if(lcHidden.has(k))lcHidden.delete(k);else lcHidden.add(k);render();});
+document.getElementById("lccompare").addEventListener("click",e=>{const el=e.target.closest("[data-key]");if(!el)return;const k=el.getAttribute("data-key");if(k==="crowdfunding"){setCF(!window.__cf);return;}if(lcHidden.has(k))lcHidden.delete(k);else lcHidden.add(k);render();});
+function setCF(on){window.__cf=on;["linechart","lcsel","lclegend","lcmore","lcsub"].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display=on?"none":"";});var p=document.getElementById("cfPanel");if(p)p.style.display=on?"block":"none";var pill=document.querySelector('#lccompare [data-key="crowdfunding"]');if(pill)pill.classList.toggle("on",on);}
+document.addEventListener("click",function(e){if(e.target&&e.target.id==="cfBack"){e.preventDefault();setCF(false);}});
+document.getElementById("rickroll").addEventListener("click",e=>{if(e.target.closest(".rickbtn"))window.open(atob("aHR0cHM6Ly95b3V0dS5iZS9kUXc0dzlXZ1hjUT9zaT1iSm9CSXI0VHFkQ1BTVFNO"),"_blank","noopener");});
+document.querySelectorAll(".yr").forEach(e=>e.textContent=new Date().getFullYear());
+(function(){try{if(new Date()>new Date('2026-07-30')){document.querySelectorAll('.betatag').forEach(function(e){e.style.display='none';});}}catch(e){}})();
+function track(n,p){try{if(window.gtag)gtag('event',n,p||{});}catch(e){}}
+document.addEventListener("click",function(e){var t=e.target;if(!t||!t.closest)return;var el;
+if(el=t.closest("#method button")){track("set_method",{method:el.dataset.m});return;}
+if(el=t.closest("#horizon button")){track("set_horizon",{horizon:el.dataset.h});return;}
+if(el=t.closest("#sortby button")){track("set_sort",{sort:el.dataset.sort});return;}
+if(el=t.closest("#chartmetric button")){track("chart_metric",{metric:el.dataset.cm});return;}
+if(el=t.closest("[data-bulk]")){track("legend_bulk",{action:el.getAttribute("data-bulk")});return;}
+if(el=t.closest('#lccompare [data-key="crowdfunding"]')){track("crowdfunding",{});return;}
+if(el=t.closest("#lccompare [data-key]")){track("toggle_benchmark",{benchmark:el.getAttribute("data-key")});return;}
+if(el=t.closest("#lcmore [data-toggleall]")){track("show_all_lines",{});return;}
+if(el=t.closest(".showall")){track("show_all_funds",{});return;}
+if(el=t.closest("[data-listmore]")){track("list_more_funds",{action:el.getAttribute("data-listmore")});return;}
+if(el=t.closest("[data-fdet]")){track("fund_details",{fund:el.getAttribute("data-fdet")});return;}
+if(el=t.closest("#lclegend [data-key]")){track("toggle_fund",{fund:el.getAttribute("data-key")});return;}
+if(el=t.closest(".rickbtn")){track("rickroll",{});return;}
+if(el=t.closest('.learnbtn,.learncta,[data-nav="learn"]')){track("learn_click",{});return;}
+if(el=t.closest('.fundlink,[data-nav="fundpage"]')){track("fund_page",{fund:(el.textContent||"").replace(/↗/g,"").trim()});return;}
+if(el=t.closest('[data-nav="funds"]')){track("funds_click",{});return;}
+if(el=t.closest(".btn-coffee")){track("support_click",{place:"coffee"});return;}
+if(el=t.closest(".btn-book")){track("support_click",{place:"book"});return;}
+if(el=t.closest(".connect a")){track("social_click",{network:el.getAttribute("aria-label")||""});return;}
+},true);
+document.addEventListener("change",function(e){if(e.target&&e.target.id==="sh")track("toggle_shariah",{state:e.target.checked?"on":"off"});},true);
+(function(){var u=document.querySelector('.st-u'),r=document.querySelector('.st-r'),c=document.querySelector('.st-c'),n=document.querySelector('.st-note');if(!u||!r)return;var f=function(x){return (x>=10?Math.floor(x/10)*10:x).toLocaleString()+'+';};fetch('stats.json?_='+Date.now()).then(function(x){return x.ok?x.json():null;}).then(function(s){if(!s)return;if(typeof s.users==='number')u.textContent=f(s.users);if(typeof s.rickrolls==='number')r.textContent=f(s.rickrolls);if(c&&typeof s.crowdfunding==='number')c.textContent=f(s.crowdfunding);if(n)n.hidden=false;}).catch(function(){});})();
+(function(){
+  const host=document.getElementById("linechart");
+  const panel=host&&host.closest(".chartpanel");
+  const tip=document.getElementById("lctip");
+  if(!host||!panel||!tip)return;
+  host.addEventListener("pointermove",ev=>{
+    const h=ev.target.closest&&ev.target.closest(".lchit");
+    if(h){const pr=panel.getBoundingClientRect();tip.textContent=h.getAttribute("data-name");tip.style.background=h.getAttribute("data-col")||"#111827";tip.style.left=(ev.clientX-pr.left)+"px";tip.style.top=(ev.clientY-pr.top)+"px";tip.classList.add("on");}
+    else tip.classList.remove("on");
+  });
+  host.addEventListener("pointerleave",()=>tip.classList.remove("on"));
+  host.addEventListener("click",ev=>{const h=ev.target.closest&&ev.target.closest(".lchit");if(!h)return;const k=h.getAttribute("data-key");lcSel=(lcSel===k)?null:k;renderLineChart(lcRows);});
+  const sel=document.getElementById("lcsel");
+  if(sel)sel.addEventListener("click",ev=>{if(ev.target.closest("[data-clear]")){lcSel=null;renderLineChart(lcRows);}});
+})();
+function fret(f){var H=f.H||{};var k=H["36"]?"36":String(f.M);return (H[k]&&typeof H[k][1]==="number")?H[k][1]:-999;}function renderBrowse(){var el=document.getElementById("browseall");if(!el)return;var rows=FUNDS.slice().sort(function(a,b){return fret(b)-fret(a);}).slice(0,3);el.innerHTML=rows.map(function(f){var sl=f.label.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");var r=fret(f);var rs=(r>-900)?((r>=0?"+":"")+r.toFixed(1)+"%/yr"):"";return '<a class="ba-link" href="/funds/'+sl+'.html" data-nav="fundpage"><span class="ba-nm">'+f.label+'</span><span class="ba-ret">'+rs+'</span></a>';}).join("");var btn=document.getElementById("browseallbtn");if(btn)btn.textContent="Browse all "+FUNDS.length+" funds \u2192";}
+fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{
+  if(!(d&&Array.isArray(d.funds)&&d.funds.length))throw 0;
+  FUNDS=d.funds;renderBrowse();
+  if(d.asOf){const p=d.asOf.split("-");document.querySelectorAll(".asof").forEach(e=>e.textContent=(+p[2])+" "+MONTHS[+p[1]-1]+" "+p[0]);}
+  fetch("details.json",{cache:"no-store"}).then(r=>r.json()).then(dd=>{DETAILS=dd||{};render();}).catch(()=>{render();});
+}).catch(()=>{var r=document.getElementById("results");if(r)r.innerHTML='<p style="text-align:center;color:var(--muted);padding:28px 0;font-size:14px">Could not load the latest fund data. Please refresh the page.</p>';});
+</script>
+<script>document.addEventListener("click",function(e){var c=e.target&&e.target.closest&&e.target.closest(".btn-coffee,.rk-coffee");if(c){e.preventDefault();var w=480,h=Math.min(940,(screen.availHeight||screen.height||800)-40),L=Math.max(0,((screen.width||1000)-w)/2),T=Math.max(0,((screen.height||800)-h)/2);window.open("https://www.supportkori.com/widget/returnkoto","skpay","popup=yes,width="+w+",height="+h+",left="+L+",top="+T);}},true);</script>
+</body>
+</html>
