@@ -219,7 +219,8 @@
     rows.push(['Monthly SIP /yr ('+pl+')',cols.map(function(f){return retCell(f,2);})]);
     rows.push(['Management fee',cols.map(function(f){return det(f,'fee');})]);
     rows.push(['Exit load',cols.map(function(f){return det(f,'exit');})]);
-    rows.push(['Minimum investment',cols.map(function(f){return det(f,'min');})]);
+    rows.push(['Minimum (one-time)',cols.map(function(f){return det(f,'min').replace(/;?\s*SIP from[^;]*/i,'');})]);
+    rows.push(['Minimum (SIP)',cols.map(function(f){return det(f,'minSip');})]);
     rows.push(['Risk (by type)',cols.map(function(f){return riskOf(f);})]);
     var head='<thead><tr><th class="k"></th>'+cols.map(function(f){return '<th>'+f.label.replace(/</g,'&lt;')+'</th>';}).join('')+'</tr></thead>';
     var body='<tbody>';
@@ -227,7 +228,7 @@
     body+='<tr class="cmp-openrow"><td class="k"></td>'+cols.map(function(f){return '<td><a href="/funds/'+slug(f.label)+'.html">Open '+f.label.replace(/</g,'&lt;')+' →</a></td>';}).join('')+'</tr>';
     body+='</tbody>';
     root.innerHTML=head+body;
-    document.getElementById('cmpNote').innerHTML='Returns are total return (dividends reinvested) over the '+pl+' look-back. "Per year" is the annualized compound rate (CAGR); "Monthly SIP /yr" is the money-weighted return (IRR) on a fixed monthly investment. The minimum shown is the stated one-time (lump-sum) minimum; most funds also let you start a monthly SIP from a lower amount, often around ৳1,000, and where a fund states its SIP minimum it is shown on the same line. Risk is a general guide based on the fund type, not a formal rating. A dash means the fund is younger than the selected period or the detail is not disclosed in its prospectus.';
+    document.getElementById('cmpNote').innerHTML='Returns are total return (dividends reinvested) over the '+pl+' look-back. "Per year" is the annualized compound rate (CAGR); "Monthly SIP /yr" is the money-weighted return (IRR) on a fixed monthly investment. "Minimum (one-time)" is the lump-sum minimum and "Minimum (SIP)" is the smallest monthly instalment, each verified from the prospectus or asset manager.Risk is a general guide based on the fund type, not a formal rating. A dash means the fund is younger than the selected period or the detail is not disclosed in its prospectus.';
     // keep URL shareable
     try{var u=new URLSearchParams();u.set('funds',cols.map(function(f){return slug(f.label);}).join(','));if(period!=='36')u.set('p',period);history.replaceState(null,'','/compare.html?'+u.toString());}catch(e){}
   }
