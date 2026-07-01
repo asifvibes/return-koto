@@ -148,6 +148,26 @@ table.ret td.pos{color:var(--green)}table.ret td.neg{color:#c0392b}
 [data-theme="dark"] .rk-foot-note{color:#8391A5}
 [data-theme="dark"] .rk-social a{background:#182130;border-color:#2B3648;color:#AEB9CC}
 [data-theme="dark"] .rk-social a:hover{color:#3DD98A;border-color:#3DD98A}
+.hp-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:2px}
+.hp-asof{font-size:11.5px;font-weight:700;color:var(--green);background:#e7f6ec;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.hp-sec{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:16px 0 9px}
+.hp-mixbar{display:flex;height:16px;border-radius:6px;overflow:hidden;margin-bottom:10px;background:#eef3f0}
+.hp-mixbar div{min-width:0}
+.hp-legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+.hp-legend>span{display:flex;align-items:center;gap:6px}
+.hp-sw{width:10px;height:10px;border-radius:2px;flex:none}
+.hp-row{display:flex;align-items:center;gap:10px;font-size:13.5px;margin-bottom:8px}
+.hp-row:last-child{margin-bottom:0}
+.hp-lbl{flex:none;width:175px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hp-trk{flex:1;background:#eef3f0;border-radius:4px;height:9px;overflow:hidden}
+.hp-fill{height:100%;background:var(--green);border-radius:4px}
+.hp-val{flex:none;width:48px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-weight:600}
+.hp-conc{font-size:13.5px;color:var(--muted);margin:14px 0 0}.hp-conc b{color:var(--ink)}
+.hp-src{font-size:12px;color:var(--muted);margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);line-height:1.6}
+@media(max-width:560px){.hp-lbl{width:118px}.hp-val{width:44px}}
+[data-theme="dark"] .hp-asof{background:#0C2E22;color:#34D399}
+[data-theme="dark"] .hp-trk,[data-theme="dark"] .hp-mixbar{background:#212C3C}
+[data-theme="dark"] .hp-src{border-top-color:#1E2735}
 </style>
 </head>
 <body>
@@ -193,6 +213,7 @@ table.ret td.pos{color:var(--green)}table.ret td.neg{color:#c0392b}
 <h2>Fund details</h2>
 <div class="dgrid"><div class="drow"><span class="dk">Management fee</span><span class="dv">0.70% per year (maximum)</span></div><div class="drow"><span class="dk">Early-exit fee</span><span class="dv">Exit load 2% if held under 90 days, 1.5% for 90 to 180 days, 1% for 180 to 360 days, none after 1 year</span></div><div class="drow"><span class="dk">Minimum investment</span><span class="dv">BDT 5,000 individual / BDT 50,000 institution</span></div><div class="drow"><span class="dk">Liquidity</span><span class="dv">Open-end, redeemable weekly at NAV</span></div><div class="drow"><span class="dk">Asset manager</span><span class="dv">IDLC Asset Management</span></div><div class="drow"><span class="dk">Sponsor</span><span class="dv">IDLC Asset Management</span></div><div class="drow"><span class="dk">Trustee</span><span class="dv">Sandhani Life Insurance</span></div><div class="drow"><span class="dk">Custodian</span><span class="dv">BRAC Bank</span></div><div class="drow"><span class="dk">Face value</span><span class="dv">BDT 10 per unit</span></div></div>
 </section>
+<section class="card hp-wrap"><div class="hp-head"><h2>What IDLC Income Fund holds</h2><span class="hp-asof">As of 31 Mar 2026</span></div><p class="sub">From the fund&rsquo;s quarterly portfolio disclosure. Percentages by cost value.</p><div class="hp-sec">Asset mix</div><div class="hp-mixbar"><div style="width:87.70%;background:#1F9E57"></div><div style="width:8.43%;background:#2F80ED"></div><div style="width:2.32%;background:#E0A82E"></div><div style="width:1.55%;background:#8E7CC3"></div></div><div class="hp-legend"><span><span class="hp-sw" style="background:#1F9E57"></span>Treasury bills &amp; bonds 87.7%</span><span><span class="hp-sw" style="background:#2F80ED"></span>STD &amp; FDR 8.4%</span><span><span class="hp-sw" style="background:#E0A82E"></span>Other assets 2.3%</span><span><span class="hp-sw" style="background:#8E7CC3"></span>Corporate bond 1.6%</span></div><div class="hp-sec">Largest holdings</div><div class="hp-row"><span class="hp-lbl">Government treasury bills &amp; bonds</span><span class="hp-trk"><span class="hp-fill" style="width:100%"></span></span><span class="hp-val">87.7%</span></div><div class="hp-row"><span class="hp-lbl">APSCL corporate bond</span><span class="hp-trk"><span class="hp-fill" style="width:2%"></span></span><span class="hp-val">1.6%</span></div><p class="hp-src">&#10003; Verified from IDLC quarterly factsheet (Q3 FY2026) (31 Mar 2026). Holdings are disclosed quarterly, so they can lag the latest weekly NAV.</p></section>
 <section class="card"><h2>Questions about IDLC Income Fund</h2><p style="margin:0 0 10px;font-size:14px"><b>What kind of fund is IDLC Income Fund?</b><br>IDLC Income Fund is an open-end income mutual fund in Bangladesh, managed by IDLC Asset Management. You buy and redeem units at its weekly net asset value (NAV), and it has no fixed maturity.</p><p style="margin:0 0 10px;font-size:14px"><b>What is the historical return of IDLC Income Fund?</b><br>Over roughly 5.1 years to 18 Jun 2026, IDLC Income Fund returned about +8.4% per year, as a total return with dividends reinvested. The figure changes with the period you choose, and past performance does not guarantee future results.</p><p style="margin:0 0 10px;font-size:14px"><b>What are the fees for IDLC Income Fund?</b><br>IDLC Income Fund charges a management fee of 0.70% per year (maximum). Its published NAV, and so every return shown, is already net of this fee.</p><p style="margin:0 0 10px;font-size:14px"><b>Does IDLC Income Fund have an exit load?</b><br>Exit load 2% if held under 90 days, 1.5% for 90 to 180 days, 1% for 180 to 360 days, none after 1 year.</p><p style="margin:0 0 10px;font-size:14px"><b>What is the minimum investment for IDLC Income Fund?</b><br>IDLC Income Fund has a one-time minimum of BDT 5,000 individual / BDT 50,000 institution and a monthly SIP from BDT 5,000/month.</p><p style="margin:0 0 10px;font-size:14px"><b>Is IDLC Income Fund Shariah-compliant?</b><br>No. IDLC Income Fund is a conventional open-end fund, not Shariah-certified. ReturnKoto? has a one-tap filter to show only Shariah funds.</p></section>
 <a class="cta" href="/compare.html?a=idlc-income-fund">Compare IDLC Income Fund with other funds &#8594;</a>
 </main>
