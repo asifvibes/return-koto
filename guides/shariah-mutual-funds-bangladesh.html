@@ -7,6 +7,7 @@
   gtag('js', new Date());
   gtag('config', 'G-9ZHRMVLEEE');
 </script>
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; base-uri 'self'; form-action 'none'; object-src 'none'">
@@ -82,6 +83,29 @@
 .rk-social svg{width:17px;height:17px;fill:currentColor}
 .rk-foot-note{font-size:12px;color:#7c8c82;line-height:1.7;margin:2px 0 0;max-width:520px}
 @media(max-width:560px){.rk-nav{padding:11px 15px}.rk-logo{font-size:16px}.rk-links{gap:15px}.rk-links a{font-size:13.5px}.rk-foot-in{padding:28px 18px 32px;gap:14px}.rk-foot-links{gap:16px}}
+  .themetog{background:none;border:0;cursor:pointer;font-size:15px;line-height:1;padding:5px 7px;border-radius:7px;display:inline-flex;align-items:center}
+  .themetog:hover{background:rgba(0,0,0,.06)}
+  [data-theme="dark"]{--text:#E6EAF2;--muted:#9BA7BB;--border:#2B3648;--bg:#0E141F;--card:#182130;--green-soft:#12301E;--amber-soft:#3A2C10}
+  [data-theme="dark"] .themetog:hover{background:rgba(255,255,255,.1)}
+  [data-theme="dark"] .rk-nav{background:rgba(14,20,31,.92);border-bottom-color:#1E2735}
+  [data-theme="dark"] .rk-logo{color:#EAF0F8}
+  [data-theme="dark"] .rk-links a{color:#AEB9CC}
+  [data-theme="dark"] .rk-links a:hover,[data-theme="dark"] .rk-links a.active{color:#3DD98A}
+  [data-theme="dark"] .backlink{background:#12301E;border-color:#1E4A30;color:#3DD98A}
+  [data-theme="dark"] .backlink:hover{background:#173D27}
+  [data-theme="dark"] .brand .q{color:#3DD98A}
+  [data-theme="dark"] .lead a,[data-theme="dark"] p a{color:#3DD98A}
+  [data-theme="dark"] .callout{background:#2A2416;border-color:#5A4A1E;color:#E4D3A0}
+  [data-theme="dark"] dl.gloss dd{color:#C2CAD6}
+  [data-theme="dark"] .cta{background:#1F9E57}
+  [data-theme="dark"] .cta:hover{background:#25B866}
+  [data-theme="dark"] .toc a{color:var(--text)}
+  [data-theme="dark"] .rk-foot{background:#0B111A;border-top-color:#1E2735}
+  [data-theme="dark"] .rk-foot-links a{color:#AEB9CC}
+  [data-theme="dark"] .rk-foot-links a:hover{color:#3DD98A}
+  [data-theme="dark"] .rk-foot-note{color:#8391A5}
+  [data-theme="dark"] .rk-social a{background:#182130;border-color:#2B3648;color:#AEB9CC}
+  [data-theme="dark"] .rk-social a:hover{color:#3DD98A;border-color:#3DD98A}
 </style>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Shariah-Compliant Mutual Funds in Bangladesh: A Guide", "description": "What makes a mutual fund Shariah-compliant in Bangladesh, how these funds work, who oversees them, and how to find and compare the Shariah-compliant open-end funds.", "inLanguage": "en", "about": "Bangladeshi open-end mutual funds", "isPartOf": {"@id": "https://returnkoto.com/#website"}, "publisher": {"@id": "https://returnkoto.com/#org"}, "mainEntityOfPage": "https://returnkoto.com/guides/shariah-mutual-funds-bangladesh.html"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://returnkoto.com/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://returnkoto.com/learn.html"}, {"@type": "ListItem", "position": 3, "name": "Shariah-compliant mutual funds in Bangladesh", "item": "https://returnkoto.com/guides/shariah-mutual-funds-bangladesh.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are there halal mutual funds in Bangladesh?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Several open-end mutual funds in Bangladesh are Shariah-compliant, investing only in Islamically permissible ways under the oversight of a Shariah supervisory board. ReturnKoto has a one-tap filter to show only these funds."}}, {"@type": "Question", "name": "How is a Shariah-compliant fund different from a regular fund?", "acceptedAnswer": {"@type": "Answer", "text": "It applies Islamic screening: avoiding interest-based income and non-permissible businesses, with a Shariah board reviewing its holdings. Otherwise it works like any open-end fund, with units priced at NAV."}}, {"@type": "Question", "name": "How do I find Shariah-compliant funds on ReturnKoto?", "acceptedAnswer": {"@type": "Answer", "text": "Turn on the 'Shariah-compliant only' filter on the calculator, or look for the Shariah tag in the funds directory. You can then compare their real historical returns."}}, {"@type": "Question", "name": "Do Shariah funds give lower returns?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily. Returns depend on the specific fund and the time period, not on whether it is Shariah-compliant. Compare actual history on ReturnKoto with the Shariah filter on."}}]}]}
@@ -90,7 +114,7 @@
 <body>
 <nav class="rk-nav">
 <a class="rk-logo" href="/"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="24" fill="#1F9E57"/><path d="M22 66 44 50 58 58 76 34" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 34 76 34 76 50" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>ReturnKoto?<span class="rk-beta">BETA</span></a>
-<div class="rk-links"><a href="/funds/" data-nav="funds">Funds</a><a href="/learn.html" data-nav="learn">Learn</a></div>
+<div class="rk-links"><a href="/funds/" data-nav="funds">Funds</a><a href="/learn.html" data-nav="learn">Learn</a><button class="themetog" aria-label="Toggle dark mode">🌙</button></div>
 </nav>
 <div class="wrap">
   <h1>Shariah-compliant mutual funds in Bangladesh</h1>
@@ -123,5 +147,6 @@
 <script>(function(){var p=location.pathname,k=/^\/funds(\/|$)/.test(p)?'funds':(/learn|guides/.test(p)?'learn':null);if(k){var a=document.querySelector('.rk-links [data-nav="'+k+'"]');if(a){a.classList.add('active');a.setAttribute('aria-current','page');}}})();</script>
 <script>document.addEventListener("click",function(e){var c=e.target&&e.target.closest&&e.target.closest(".rk-coffee,.btn-coffee");if(c){e.preventDefault();var w=480,h=Math.min(940,(screen.availHeight||screen.height||800)-40),L=Math.max(0,((screen.width||1000)-w)/2),T=Math.max(0,((screen.height||800)-h)/2);window.open("https://www.supportkori.com/widget/returnkoto","skpay","popup=yes,width="+w+",height="+h+",left="+L+",top="+T);}},true);</script>
 </footer>
+<script>function rkToggleTheme(){var d=document.documentElement,n=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('theme',n);}catch(e){}rkThemeIcon();}function rkThemeIcon(){var b=document.querySelector('.themetog');if(b)b.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';}(function(){var b=document.querySelector('.themetog');if(b)b.addEventListener('click',rkToggleTheme);rkThemeIcon();})();</script>
 </body>
 </html>
