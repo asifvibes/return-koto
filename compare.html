@@ -163,7 +163,7 @@
   var root=document.getElementById('cmpTable');
   var data,details;
   try{
-    var res=await Promise.all([fetch('/data.json'),fetch('/details.json')]);
+    var res=await Promise.all([fetch('/data.json?t='+Date.now()),fetch('/details.json?t='+Date.now())]);
     data=await res[0].json(); details=await res[1].json();
   }catch(e){ root.innerHTML='<tbody><tr><td>Could not load fund data. Please reload the page.</td></tr></tbody>'; return; }
   if(data.asOf){var ap=data.asOf.split('-');document.getElementById('cmpAsof').textContent=(+ap[2])+' '+MONTHS[(+ap[1])-1]+' '+ap[0];}
