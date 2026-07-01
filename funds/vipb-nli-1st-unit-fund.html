@@ -148,6 +148,26 @@ table.ret td.pos{color:var(--green)}table.ret td.neg{color:#c0392b}
 [data-theme="dark"] .rk-foot-note{color:#8391A5}
 [data-theme="dark"] .rk-social a{background:#182130;border-color:#2B3648;color:#AEB9CC}
 [data-theme="dark"] .rk-social a:hover{color:#3DD98A;border-color:#3DD98A}
+.hp-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:2px}
+.hp-asof{font-size:11.5px;font-weight:700;color:var(--green);background:#e7f6ec;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.hp-sec{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:16px 0 9px}
+.hp-mixbar{display:flex;height:16px;border-radius:6px;overflow:hidden;margin-bottom:10px;background:#eef3f0}
+.hp-mixbar div{min-width:0}
+.hp-legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+.hp-legend>span{display:flex;align-items:center;gap:6px}
+.hp-sw{width:10px;height:10px;border-radius:2px;flex:none}
+.hp-row{display:flex;align-items:center;gap:10px;font-size:13.5px;margin-bottom:8px}
+.hp-row:last-child{margin-bottom:0}
+.hp-lbl{flex:none;width:175px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hp-trk{flex:1;background:#eef3f0;border-radius:4px;height:9px;overflow:hidden}
+.hp-fill{height:100%;background:var(--green);border-radius:4px}
+.hp-val{flex:none;width:48px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-weight:600}
+.hp-conc{font-size:13.5px;color:var(--muted);margin:14px 0 0}.hp-conc b{color:var(--ink)}
+.hp-src{font-size:12px;color:var(--muted);margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);line-height:1.6}
+@media(max-width:560px){.hp-lbl{width:118px}.hp-val{width:44px}}
+[data-theme="dark"] .hp-asof{background:#0C2E22;color:#34D399}
+[data-theme="dark"] .hp-trk,[data-theme="dark"] .hp-mixbar{background:#212C3C}
+[data-theme="dark"] .hp-src{border-top-color:#1E2735}
 </style>
 </head>
 <body>
@@ -193,6 +213,7 @@ table.ret td.pos{color:var(--green)}table.ret td.neg{color:#c0392b}
 <h2>Fund details</h2>
 <div class="dgrid"><div class="drow"><span class="dk">Management fee</span><span class="dv">2.50% down to 1.00% per year (tiered by fund size)</span></div><div class="drow"><span class="dk">Early-exit fee</span><span class="dv">Buy/sell spread up to 1% of NAV</span></div><div class="drow"><span class="dk">Minimum investment</span><span class="dv">BDT 20,000 individual / BDT 50,000 institution</span></div><div class="drow"><span class="dk">Liquidity</span><span class="dv">Open-end, redeemable weekly at NAV</span></div><div class="drow"><span class="dk">Asset manager</span><span class="dv">VIPB Asset Management</span></div><div class="drow"><span class="dk">Sponsor</span><span class="dv">National Life Insurance</span></div><div class="drow"><span class="dk">Trustee</span><span class="dv">Investment Corporation of Bangladesh (ICB)</span></div><div class="drow"><span class="dk">Custodian</span><span class="dv">Investment Corporation of Bangladesh (ICB)</span></div><div class="drow"><span class="dk">Face value</span><span class="dv">BDT 10 per unit</span></div></div>
 </section>
+<section class="card hp-wrap"><div class="hp-head"><h2>What VIPB NLI 1st Unit Fund holds</h2><span class="hp-asof">As of 30 Mar 2026</span></div><p class="sub">From the fund&rsquo;s quarterly portfolio disclosure. Percentages as reported by the fund.</p><div class="hp-sec">Asset mix</div><div class="hp-mixbar"><div style="width:78.57%;background:#1F9E57"></div><div style="width:7.32%;background:#2F80ED"></div><div style="width:12.70%;background:#E0A82E"></div><div style="width:1.41%;background:#8E7CC3"></div></div><div class="hp-legend"><span><span class="hp-sw" style="background:#1F9E57"></span>Common stock 78.6%</span><span><span class="hp-sw" style="background:#2F80ED"></span>Preferred stock 7.3%</span><span><span class="hp-sw" style="background:#E0A82E"></span>Fixed income 12.7%</span><span><span class="hp-sw" style="background:#8E7CC3"></span>Cash &amp; equivalents 1.4%</span></div><p class="hp-src">&#10003; Verified from VIPB fund composition (AMC site) (30 Mar 2026). Holdings are disclosed quarterly, so they can lag the latest weekly NAV.</p></section>
 <section class="card"><h2>Questions about VIPB NLI 1st Unit Fund</h2><p style="margin:0 0 10px;font-size:14px"><b>What kind of fund is VIPB NLI 1st Unit Fund?</b><br>VIPB NLI 1st Unit Fund is an open-end growth mutual fund in Bangladesh, managed by VIPB Asset Management. You buy and redeem units at its weekly net asset value (NAV), and it has no fixed maturity.</p><p style="margin:0 0 10px;font-size:14px"><b>What is the historical return of VIPB NLI 1st Unit Fund?</b><br>Over roughly 3.8 years to 18 Jun 2026, VIPB NLI 1st Unit Fund returned about +11.9% per year, as a total return with dividends reinvested. The figure changes with the period you choose, and past performance does not guarantee future results.</p><p style="margin:0 0 10px;font-size:14px"><b>What are the fees for VIPB NLI 1st Unit Fund?</b><br>VIPB NLI 1st Unit Fund charges a management fee of 2.50% down to 1.00% per year (tiered by fund size). Its published NAV, and so every return shown, is already net of this fee.</p><p style="margin:0 0 10px;font-size:14px"><b>Does VIPB NLI 1st Unit Fund have an exit load?</b><br>Buy/sell spread up to 1% of NAV.</p><p style="margin:0 0 10px;font-size:14px"><b>What is the minimum investment for VIPB NLI 1st Unit Fund?</b><br>VIPB NLI 1st Unit Fund has a one-time minimum of BDT 20,000 individual / BDT 50,000 institution and a monthly SIP from BDT 2,000/month.</p><p style="margin:0 0 10px;font-size:14px"><b>Is VIPB NLI 1st Unit Fund Shariah-compliant?</b><br>No. VIPB NLI 1st Unit Fund is a conventional open-end fund, not Shariah-certified. ReturnKoto? has a one-tap filter to show only Shariah funds.</p></section>
 <a class="cta" href="/compare.html?a=vipb-nli-1st-unit-fund">Compare VIPB NLI 1st Unit Fund with other funds &#8594;</a>
 </main>
