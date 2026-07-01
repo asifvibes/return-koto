@@ -148,6 +148,26 @@ table.ret td.pos{color:var(--green)}table.ret td.neg{color:#c0392b}
 [data-theme="dark"] .rk-foot-note{color:#8391A5}
 [data-theme="dark"] .rk-social a{background:#182130;border-color:#2B3648;color:#AEB9CC}
 [data-theme="dark"] .rk-social a:hover{color:#3DD98A;border-color:#3DD98A}
+.hp-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:2px}
+.hp-asof{font-size:11.5px;font-weight:700;color:var(--green);background:#e7f6ec;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.hp-sec{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:16px 0 9px}
+.hp-mixbar{display:flex;height:16px;border-radius:6px;overflow:hidden;margin-bottom:10px;background:#eef3f0}
+.hp-mixbar div{min-width:0}
+.hp-legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+.hp-legend>span{display:flex;align-items:center;gap:6px}
+.hp-sw{width:10px;height:10px;border-radius:2px;flex:none}
+.hp-row{display:flex;align-items:center;gap:10px;font-size:13.5px;margin-bottom:8px}
+.hp-row:last-child{margin-bottom:0}
+.hp-lbl{flex:none;width:175px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hp-trk{flex:1;background:#eef3f0;border-radius:4px;height:9px;overflow:hidden}
+.hp-fill{height:100%;background:var(--green);border-radius:4px}
+.hp-val{flex:none;width:48px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-weight:600}
+.hp-conc{font-size:13.5px;color:var(--muted);margin:14px 0 0}.hp-conc b{color:var(--ink)}
+.hp-src{font-size:12px;color:var(--muted);margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);line-height:1.6}
+@media(max-width:560px){.hp-lbl{width:118px}.hp-val{width:44px}}
+[data-theme="dark"] .hp-asof{background:#0C2E22;color:#34D399}
+[data-theme="dark"] .hp-trk,[data-theme="dark"] .hp-mixbar{background:#212C3C}
+[data-theme="dark"] .hp-src{border-top-color:#1E2735}
 </style>
 </head>
 <body>
@@ -193,6 +213,7 @@ table.ret td.pos{color:var(--green)}table.ret td.neg{color:#c0392b}
 <h2>Fund details</h2>
 <div class="dgrid"><div class="drow"><span class="dk">Management fee</span><span class="dv">2.50% down to 1.00% per year (tiered by fund size)</span></div><div class="drow"><span class="dk">Early-exit fee</span><span class="dv">2% if redeemed within 60 days; or up to 1% if a SIP is cancelled before 2 years; otherwise none</span></div><div class="drow"><span class="dk">Minimum investment</span><span class="dv">BDT 5,000 individual / BDT 50,000 institution</span></div><div class="drow"><span class="dk">Liquidity</span><span class="dv">Open-end, redeemable weekly at NAV</span></div><div class="drow"><span class="dk">Asset manager</span><span class="dv">EDGE AMC</span></div><div class="drow"><span class="dk">Sponsor</span><span class="dv">EDGE AMC</span></div><div class="drow"><span class="dk">Trustee</span><span class="dv">Sandhani Life Insurance</span></div><div class="drow"><span class="dk">Custodian</span><span class="dv">BRAC Bank</span></div><div class="drow"><span class="dk">Face value</span><span class="dv">BDT 10 per unit</span></div></div>
 </section>
+<section class="card hp-wrap"><div class="hp-head"><h2>What EDGE AMC Growth Fund holds</h2><span class="hp-asof">As of 31 Mar 2026</span></div><p class="sub">From the fund&rsquo;s quarterly portfolio disclosure. Percentages portfolio weight, as reported by the fund.</p><div class="hp-sec">Sector allocation</div><div class="hp-row"><span class="hp-lbl">Bank</span><span class="hp-trk"><span class="hp-fill" style="width:100%"></span></span><span class="hp-val">38.5%</span></div><div class="hp-row"><span class="hp-lbl">Pharmaceuticals</span><span class="hp-trk"><span class="hp-fill" style="width:51%"></span></span><span class="hp-val">19.6%</span></div><div class="hp-row"><span class="hp-lbl">Consumer</span><span class="hp-trk"><span class="hp-fill" style="width:27%"></span></span><span class="hp-val">10.4%</span></div><div class="hp-row"><span class="hp-lbl">Engineering</span><span class="hp-trk"><span class="hp-fill" style="width:27%"></span></span><span class="hp-val">10.2%</span></div><div class="hp-row"><span class="hp-lbl">Money market &amp; cash</span><span class="hp-trk"><span class="hp-fill" style="width:27%"></span></span><span class="hp-val">10.2%</span></div><div class="hp-row"><span class="hp-lbl">Preference shares</span><span class="hp-trk"><span class="hp-fill" style="width:22%"></span></span><span class="hp-val">8.4%</span></div><div class="hp-row"><span class="hp-lbl">Mutual funds</span><span class="hp-trk"><span class="hp-fill" style="width:7%"></span></span><span class="hp-val">2.6%</span></div><p class="hp-src">&#10003; Verified from EDGE AMC fund page (sectoral allocation) (31 Mar 2026). Holdings are disclosed quarterly, so they can lag the latest weekly NAV.</p></section>
 <section class="card"><h2>Questions about EDGE AMC Growth Fund</h2><p style="margin:0 0 10px;font-size:14px"><b>What kind of fund is EDGE AMC Growth Fund?</b><br>EDGE AMC Growth Fund is an open-end growth mutual fund in Bangladesh, managed by EDGE AMC. You buy and redeem units at its weekly net asset value (NAV), and it has no fixed maturity.</p><p style="margin:0 0 10px;font-size:14px"><b>What is the historical return of EDGE AMC Growth Fund?</b><br>Over roughly 6.7 years to 18 Jun 2026, EDGE AMC Growth Fund returned about +10.8% per year, as a total return with dividends reinvested. The figure changes with the period you choose, and past performance does not guarantee future results.</p><p style="margin:0 0 10px;font-size:14px"><b>What are the fees for EDGE AMC Growth Fund?</b><br>EDGE AMC Growth Fund charges a management fee of 2.50% down to 1.00% per year (tiered by fund size). Its published NAV, and so every return shown, is already net of this fee.</p><p style="margin:0 0 10px;font-size:14px"><b>Does EDGE AMC Growth Fund have an exit load?</b><br>2% if redeemed within 60 days; or up to 1% if a SIP is cancelled before 2 years; otherwise none.</p><p style="margin:0 0 10px;font-size:14px"><b>What is the minimum investment for EDGE AMC Growth Fund?</b><br>EDGE AMC Growth Fund has a one-time minimum of BDT 5,000 individual / BDT 50,000 institution and a monthly SIP from BDT 1,000/month.</p><p style="margin:0 0 10px;font-size:14px"><b>Is EDGE AMC Growth Fund Shariah-compliant?</b><br>No. EDGE AMC Growth Fund is a conventional open-end fund, not Shariah-certified. ReturnKoto? has a one-tap filter to show only Shariah funds.</p></section>
 <a class="cta" href="/compare.html?a=edge-amc-growth-fund">Compare EDGE AMC Growth Fund with other funds &#8594;</a>
 </main>
