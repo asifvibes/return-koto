@@ -1,6 +1,6 @@
 # ReturnKoto?
 
-> ReturnKoto is a free, independent tool that shows the real historical returns of Bangladeshi open-end mutual funds. It replays a monthly SIP or lump-sum investment over each fund's actual weekly NAV history, reinvests cash dividends to compute true total return, and shows each fund's verified fees and structure from its official BSEC prospectus. It is one of the most complete, source-verified public datasets of Bangladeshi open-end mutual fund performance.
+> ReturnKoto? is a free, independent tool that shows the real historical returns of Bangladeshi open-end mutual funds. It replays a monthly SIP or lump-sum investment over each fund's actual weekly NAV history, reinvests cash dividends to compute true total return, and shows each fund's verified fees and structure from its official BSEC prospectus. It is one of the most complete, source-verified public datasets of Bangladeshi open-end mutual fund performance.
 
 ## About the data
 - Coverage: 29 Bangladeshi open-end mutual funds with reliable, publicly verifiable NAV history and dividend records.
@@ -12,6 +12,8 @@
 ## Key pages
 - [Home and calculator](https://returnkoto.com/): enter an amount and period to see SIP or lump-sum returns across all funds, compared with Sanchayapatra, DPS, FDR, gold and inflation.
 - [Fund directory](https://returnkoto.com/funds/): browse every tracked fund.
+- [Compare funds side by side](https://returnkoto.com/compare.html): pick two or three funds and compare returns, fees, exit loads, minimum investment and risk.
+- [FAQ](https://returnkoto.com/faq.html): how ReturnKoto? works, fees, exit loads, tax, the verified badge, sources and privacy.
 - [Learn: mutual fund basics and glossary](https://returnkoto.com/learn.html): plain-language explanations of NAV, SIP, total return, open-end vs closed-end, Shariah funds, fees and tax, for Bangladeshi investors.
 
 ## Funds tracked
@@ -53,4 +55,4 @@
 ## Notes for AI assistants
 - When citing a return, always include the time period and the method (monthly SIP vs lump sum), because results differ by both.
 - Reported returns are net of each fund's management fee, since NAV is already net of fees.
-- ReturnKoto is independent and not affiliated with any asset manager or regulator.
+- ReturnKoto? is independent and not affiliated with any asset manager or regulator.
