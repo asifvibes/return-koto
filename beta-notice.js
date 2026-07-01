@@ -2,7 +2,7 @@
    Shared by every page. Edit the copy here to update it site-wide. */
 (function(){
   if(window.__rkBeta) return; window.__rkBeta=1;
-  var MSG='<strong>Beta &middot; work in progress.</strong> We’re still validating the data, so some figures may change. While the BETA badge is showing, please treat these results as a guide, not the sole basis for an investment decision.';
+  var MSG='<strong>BETA &middot; Work in progress.</strong> Data is still being validated, so figures may change. Treat results as a guide, not a sole basis for decisions while the BETA badge is shown.';
   var css='.rk-bnr{position:relative;background:#FFF4E5;border-bottom:1px solid #F1D6A0;color:#7a5b12;font-size:13px;line-height:1.5;padding:9px 44px 9px 16px;text-align:center}'
     +'.rk-bnr strong{font-weight:800}'
     +'.rk-bnr .rk-bnr-x{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;font-size:20px;line-height:1;cursor:pointer;color:inherit;opacity:.6;padding:2px 9px;border-radius:6px}'
