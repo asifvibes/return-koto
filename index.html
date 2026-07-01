@@ -30,11 +30,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
   :root{
     --green:#2ECC71;--green-dark:#27AE60;--green-soft:#E8F8F0;
     --text:#1A1F2C;--muted:#6B7280;--border:#E5E7EB;--bg:#F9FAFB;--card:#FFFFFF;
     --red:#DC2626;--amber:#B45309;--amber-soft:#FEF3C7;
+    --ch-grid:#EEF0F2;--ch-label:#9CA3AF;--ch-inv:#334155;
     --shadow:0 1px 3px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.04);
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -220,6 +222,47 @@
   @media(max-width:560px){.cbar-row{grid-template-columns:116px 1fr 80px;gap:8px}.cbar-name{font-size:11px}.cbar-num{font-size:11.5px}.cbar-dur{font-size:9.5px}}
   .miss{display:flex;align-items:center;gap:11px;flex-wrap:wrap;font-size:13px;font-weight:600;color:#475569;background:#F1F5F9;border:1px solid #E2E8F0;border-left:4px solid #94A3B8;border-radius:10px;padding:12px 14px;margin-top:12px}
   .miss .miss-ic{flex:none;width:26px;height:26px;color:#94A3B8}
+  .themetog{background:none;border:0;cursor:pointer;font-size:15px;line-height:1;padding:5px 7px;border-radius:7px;display:inline-flex;align-items:center}
+  .themetog:hover{background:rgba(0,0,0,.06)}
+  /* ---- Dark mode ---- */
+  [data-theme="dark"]{--text:#E6EAF2;--muted:#9BA7BB;--border:#2B3648;--bg:#0E141F;--card:#182130;--green-soft:#12301E;--amber-soft:#3A2C10;--ch-grid:#242E3E;--ch-label:#7E8A9C;--ch-inv:#C7D0DE;--shadow:0 1px 3px rgba(0,0,0,.45),0 6px 18px rgba(0,0,0,.5)}
+  [data-theme="dark"] .themetog:hover{background:rgba(255,255,255,.1)}
+  [data-theme="dark"] .rk-nav{background:rgba(14,20,31,.92);border-bottom-color:#1E2735}
+  [data-theme="dark"] .rk-logo{color:#EAF0F8}
+  [data-theme="dark"] .rk-links a{color:#AEB9CC}
+  [data-theme="dark"] .rk-links a:hover,[data-theme="dark"] .rk-links a.active{color:#3DD98A}
+  [data-theme="dark"] input[type=number]{background:#141C28;color:var(--text);border-color:var(--border)}
+  [data-theme="dark"] .seg,[data-theme="dark"] .cseg{background:#212C3C}
+  [data-theme="dark"] .seg button.on,[data-theme="dark"] .cseg button.on{background:#0B111A;color:#3DD98A;box-shadow:0 1px 2px rgba(0,0,0,.5)}
+  [data-theme="dark"] #horizon button.on{background:#1F9E57;color:#fff}
+  [data-theme="dark"] .sw .sl{background:#3A4658}
+  [data-theme="dark"] .sw .sl:before{background:#E6EAF2}
+  [data-theme="dark"] .headline,[data-theme="dark"] .learncta{border-color:#1E4A30}
+  [data-theme="dark"] .learncta:hover{background:#173d27}
+  [data-theme="dark"] .cmppill{background:#182130}
+  [data-theme="dark"] .showall{background:#182130}
+  [data-theme="dark"] .showall:hover{background:#12301E}
+  [data-theme="dark"] .lccmp,[data-theme="dark"] .ratefield{background:#141C28}
+  [data-theme="dark"] .ratefield:focus-within{background:#182130}
+  [data-theme="dark"] .cbar-track{background:#212C3C}
+  [data-theme="dark"] .cbar-zero{background:#3A4658}
+  [data-theme="dark"] .cbar-tick{background:#C7D0DE}
+  [data-theme="dark"] .why,[data-theme="dark"] .miss,[data-theme="dark"] details.why>summary{background:#1B2433;color:#AEB9CC}
+  [data-theme="dark"] .why b,[data-theme="dark"] .why.caveat b{color:#D4DCE8}
+  [data-theme="dark"] details.why.caveat>summary{background:#2A2416;color:#D9C48C}
+  [data-theme="dark"] .fsz{color:#AEB9CC}
+  [data-theme="dark"] .miss{border-color:#2B3648;border-left-color:#5B6B82}
+  [data-theme="dark"] .row.best{background:linear-gradient(118deg,#2A2410,#182130 62%);border-color:#8A6B1E;box-shadow:0 0 0 2px #5A4A1E,0 8px 24px -10px rgba(0,0,0,.6)}
+  [data-theme="dark"] .lcleg .cbx{background:#182130;border-color:#3A4658}
+  [data-theme="dark"] .tag.sh{background:#1E2450;color:#A5B4FC}
+  [data-theme="dark"] .tag.cv,[data-theme="dark"] .tag.est{background:#2A2F3A;color:#AAB2C0}
+  [data-theme="dark"] .tag.ok{background:#0C2E22;color:#34D399}
+  [data-theme="dark"] .tag.income{background:#0C2A3D;color:#5CC8F5}
+  [data-theme="dark"] .tag.growth{background:#0C2E1B;color:#4ADE80}
+  [data-theme="dark"] .tag.balanced{background:#2A3446;color:#AAB6C6}
+  [data-theme="dark"] .pos,[data-theme="dark"] .nums .gn.pos,[data-theme="dark"] .cbar-num.pos,[data-theme="dark"] .hs-pct.pos{color:#34D399}
+  [data-theme="dark"] .hs-main b,[data-theme="dark"] .eyebrow,[data-theme="dark"] .fundlink:hover,[data-theme="dark"] .fundlink::after{color:#3DD98A}
+  [data-theme="dark"] .cfmsg a,[data-theme="dark"] .lcsel .x,[data-theme="dark"] .lcleg .lcbulk button{color:#3DD98A}
   .miss .miss-ic svg{width:26px;height:26px;fill:currentColor}
   .miss .miss-tx{flex:1;min-width:170px;line-height:1.4}
   .miss .miss-tx b{color:#334155;font-weight:800}
@@ -367,7 +410,7 @@
 <body>
 <nav class="rk-nav">
 <a class="rk-logo" href="/"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="24" fill="#1F9E57"/><path d="M22 66 44 50 58 58 76 34" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 34 76 34 76 50" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>ReturnKoto?<span class="rk-beta">BETA</span></a>
-<div class="rk-links"><a href="/funds/" data-nav="funds">Funds</a><a href="/learn.html" data-nav="learn">Learn</a></div>
+<div class="rk-links"><a href="/funds/" data-nav="funds">Funds</a><a href="/learn.html" data-nav="learn">Learn</a><button class="themetog" aria-label="Toggle dark mode">🌙</button></div>
 </nav>
 <div class="wrap">
   <header>
@@ -733,7 +776,7 @@ function renderLineChart(rows){
   const benchVal=r=>{const out=[];if(!isSIP){for(let t=0;t<maxLen;t++)out.push(amt*Math.pow(1+r/100,t/12));return out;}const rm=Math.pow(1+r/100,1/12)-1;let s=0;for(let t=0;t<maxLen;t++){s=s*(1+rm)+1;out.push(amt*s);}return out;};
   let lg="";
   const invOff=lcHidden.has("invested");
-  lg+=`<span class="li inv${invOff?' off':''}" data-key="invested"><span class="cbx" style="--cc:#334155"></span>What you invested</span>`;
+  lg+=`<span class="li inv${invOff?' off':''}" data-key="invested"><span class="cbx" style="--cc:var(--ch-inv)"></span>What you invested</span>`;
   if(showAllLines) lg+=`<span class="lcbulk"><button type="button" data-bulk="all">Select all</button><span class="bsep">·</span><button type="button" data-bulk="none">Clear all</button></span>`;
   series.forEach((sr,i)=>{const off=lcHidden.has(fKey(sr));lg+=`<span class="li${off?' off':''}" data-key="${fKey(sr)}"><span class="cbx" style="--cc:${colOf(i)}"></span>${i===0?'<b>':''}${SHORT[sr.f.id]||sr.f.label}${i===0?'</b>':''}</span>`;});
   leg.innerHTML=lg;
@@ -759,20 +802,20 @@ function renderLineChart(rows){
   const path=vals=>vals.map((v,t)=>(t?"L":"M")+X(t).toFixed(1)+","+Y(v).toFixed(1)).join("");
   let s=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
   const yt=4;
-  for(let i=0;i<=yt;i++){const v=ymin+(ymax-ymin)*i/yt;const yy=Y(v).toFixed(1);s+=`<line x1="${pL}" y1="${yy}" x2="${W-pR}" y2="${yy}" stroke="#EEF0F2"/><text x="${pL-6}" y="${(+yy+3).toFixed(1)}" font-size="9" fill="#9CA3AF" text-anchor="end">${fmtK(v)}</text>`;}
+  for(let i=0;i<=yt;i++){const v=ymin+(ymax-ymin)*i/yt;const yy=Y(v).toFixed(1);s+=`<line x1="${pL}" y1="${yy}" x2="${W-pR}" y2="${yy}" style="stroke:var(--ch-grid)"/><text x="${pL-6}" y="${(+yy+3).toFixed(1)}" font-size="9" style="fill:var(--ch-label)" text-anchor="end">${fmtK(v)}</text>`;}
   if(maxLen-1<12){
     const last=maxLen-1, ticks=new Set([0]), step=Math.max(1,Math.round(last/4));
     for(let mo=step;mo<last;mo+=step)ticks.add(mo); ticks.add(last);
-    [...ticks].forEach(mo=>{s+=`<text x="${X(mo).toFixed(1)}" y="${H-9}" font-size="9" fill="#9CA3AF" text-anchor="middle">${mo}m</text>`;});
+    [...ticks].forEach(mo=>{s+=`<text x="${X(mo).toFixed(1)}" y="${H-9}" font-size="9" style="fill:var(--ch-label)" text-anchor="middle">${mo}m</text>`;});
   }else{
     const yy=Math.ceil((maxLen-1)/12);
-    for(let yr=0;yr<=yy;yr++){const t=Math.min(yr*12,maxLen-1);s+=`<text x="${X(t).toFixed(1)}" y="${H-9}" font-size="9" fill="#9CA3AF" text-anchor="middle">${yr}y</text>`;}
+    for(let yr=0;yr<=yy;yr++){const t=Math.min(yr*12,maxLen-1);s+=`<text x="${X(t).toFixed(1)}" y="${H-9}" font-size="9" style="fill:var(--ch-label)" text-anchor="middle">${yr}y</text>`;}
   }
-  if(showInv){const sel=lcSel==="invested";s+=`<path d="${path(investedVals)}" fill="none" stroke="#334155" stroke-width="${sel?3:2}" opacity="${sel?1:0.9}"/>`;}
+  if(showInv){const sel=lcSel==="invested";s+=`<path d="${path(investedVals)}" fill="none" style="stroke:var(--ch-inv)" stroke-width="${sel?3:2}" opacity="${sel?1:0.9}"/>`;}
   visB.forEach(o=>{const sel=lcSel==="b"+o.nm;s+=`<path d="${path(o.vals)}" fill="none" stroke="${o.c}" stroke-width="${sel?2.6:1.7}" opacity="${sel?1:0.85}"/>`;});
   visS.slice().reverse().forEach(o=>{const best=o.i===0,sel=lcSel==="f"+o.sr.f.id;s+=`<path d="${path(o.vals)}" fill="none" stroke="${colOf(o.i)}" stroke-width="${sel?3.8:(best?3.2:2.5)}" opacity="1"/>`;});
   visS.forEach(o=>{const lx=X(o.vals.length-1).toFixed(1),ly=Y(o.vals[o.vals.length-1]).toFixed(1);s+=`<circle cx="${lx}" cy="${ly}" r="${o.i===0?4.5:3.5}" fill="${colOf(o.i)}" stroke="#fff" stroke-width="1.6"/>`;});
-  if(showInv){const lx=X(maxLen-1).toFixed(1),ly=Y(investedVals[maxLen-1]).toFixed(1);s+=`<circle cx="${lx}" cy="${ly}" r="3" fill="#334155" stroke="#fff" stroke-width="1.4"/>`;}
+  if(showInv){const lx=X(maxLen-1).toFixed(1),ly=Y(investedVals[maxLen-1]).toFixed(1);s+=`<circle cx="${lx}" cy="${ly}" r="3" style="fill:var(--ch-inv)" stroke="#fff" stroke-width="1.4"/>`;}
   visB.forEach(o=>{s+=`<path class="lchit" data-key="b${o.nm}" data-name="${o.nm}" data-col="${o.c}" d="${path(o.vals)}" fill="none" stroke="transparent" stroke-width="16" pointer-events="stroke"/>`;});
   visS.forEach(o=>{s+=`<path class="lchit" data-key="f${o.sr.f.id}" data-name="${esc(o.sr.f.label)}" data-col="${colOf(o.i)}" d="${path(o.vals)}" fill="none" stroke="transparent" stroke-width="16" pointer-events="stroke"/>`;});
   if(showInv){s+=`<path class="lchit" data-key="invested" data-name="What you invested" data-col="#334155" d="${path(investedVals)}" fill="none" stroke="transparent" stroke-width="16" pointer-events="stroke"/>`;}
@@ -784,7 +827,7 @@ function renderLineChart(rows){
     if(lcSel){
       const fm=series.find(x=>("f"+x.f.id)===lcSel);
       if(fm&&!lcHidden.has(lcSel)){nm=fm.f.label;col=colOf(series.indexOf(fm));}
-      else if(lcSel==="invested"&&showInv){nm="What you invested";col="#334155";}
+      else if(lcSel==="invested"&&showInv){nm="What you invested";col="var(--ch-inv)";}
       else if(lcSel[0]==="b"){const bn=lcSel.slice(1),bd=benchDef.find(b=>b[0]===bn);if(bd&&!lcHidden.has(lcSel)){nm=bn;col=bd[2];}}
     }
     selEl.innerHTML = nm ? `<span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${col};margin-right:5px;vertical-align:middle"></span>Highlighting <b>${esc(nm)}</b><span class="x" data-clear="1">clear ✕</span>` : "";
@@ -923,5 +966,6 @@ fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{
 }).catch(()=>{var r=document.getElementById("results");if(r)r.innerHTML='<p style="text-align:center;color:var(--muted);padding:28px 0;font-size:14px">Could not load the latest fund data. Please refresh the page.</p>';});
 </script>
 <script>document.addEventListener("click",function(e){var c=e.target&&e.target.closest&&e.target.closest(".btn-coffee,.rk-coffee");if(c){e.preventDefault();var w=480,h=Math.min(940,(screen.availHeight||screen.height||800)-40),L=Math.max(0,((screen.width||1000)-w)/2),T=Math.max(0,((screen.height||800)-h)/2);window.open("https://www.supportkori.com/widget/returnkoto","skpay","popup=yes,width="+w+",height="+h+",left="+L+",top="+T);}},true);</script>
+<script>function rkToggleTheme(){var d=document.documentElement,n=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('theme',n);}catch(e){}rkThemeIcon();}function rkThemeIcon(){var b=document.querySelector('.themetog');if(b)b.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';}(function(){var b=document.querySelector('.themetog');if(b)b.addEventListener('click',rkToggleTheme);rkThemeIcon();})();</script>
 </body>
 </html>
