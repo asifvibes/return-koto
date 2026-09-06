@@ -218,9 +218,32 @@ table.ret-roll th.num,table.ret-roll td.num{width:15.6%;padding-right:0}
 table.ret th .tipbtn-th{margin-left:3px;width:14px;height:14px;font-size:9px;vertical-align:text-top}
 table.ret td.ned{text-align:right;font-weight:600;color:var(--muted);font-size:12.5px;white-space:normal}
 @media(max-width:560px){
-  table.ret-roll{font-size:12px;min-width:520px}
-  table.ret-roll th,table.ret-roll td{padding:9px 4px}
   table.ret th .tipbtn-th{margin-left:2px}
+  /* STACK THE ROLLING TABLE ON PHONES INSTEAD OF SCROLLING IT SIDEWAYS.
+     Six columns need 520px. At 375px that left a 309px window showing only
+     Window / Latest / Median / Best, with Worst and Windows clipped outside.
+     Hiding the worst case is the one thing a risk table must not do, and a
+     thin horizontal scrollbar is not an affordance most people act on.
+     Two data rows stack comfortably, so each row becomes a labelled block.
+     Column names come from data-l on each cell, set by generate-fund-pages.py. */
+  table.ret-roll{display:block;min-width:0;font-size:13px}
+  table.ret-roll thead{display:none}          /* headers live in data-l now */
+  table.ret-roll tbody,table.ret-roll tr,table.ret-roll td{display:block;width:auto}
+  table.ret-roll tr{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 10px}
+  table.ret-roll tr:last-child{margin-bottom:0}
+  table.ret-roll td:first-child{
+    width:auto;font-weight:700;font-size:14px;color:var(--ink);
+    padding:0 0 8px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+  table.ret-roll td[data-l]{
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+    width:auto;padding:5px 0;border-bottom:none;text-align:right}
+  table.ret-roll td[data-l]::before{
+    content:attr(data-l);font-weight:600;font-size:12.5px;color:var(--muted);text-align:left}
+  /* The "Needs 3 years of history" cell spans the row, so it has no label. */
+  table.ret-roll td.ned{text-align:left;padding:0;border-bottom:none}
+  /* Scoped inside the query: these borders only exist in the stacked layout. */
+  [data-theme="dark"] table.ret-roll tr{border-color:#1E2735}
+  [data-theme="dark"] table.ret-roll td:first-child{border-bottom-color:#1E2735}
 }
 .asof{font-size:12px;color:var(--muted);margin:13px 0 0}
 .asof-wrap{white-space:nowrap}
@@ -570,8 +593,8 @@ html.rk-anim .hp-donut.in circle{stroke-dasharray:var(--len) var(--gap);transiti
 <h2>Rolling returns &amp; path risk <button type="button" class="tipbtn" data-tipkey="path_risk" data-tip="Rolling returns replay every closed 1-year or 3-year window in this fund&rsquo;s NAV history (dividends reinvested). Path risk uses the same fixed 3-year window as the star rating when the fund is old enough. If the track record is shorter, ReturnKoto? shows the same measures over available history, or marks the cell as needing more history." aria-label="What is Rolling returns and path risk?" aria-expanded="false">?</button></h2>
 <p class="sub">A single look-back can flatter or punish a start date. These figures walk the whole history.</p>
 <div class="tablewrap"><table class="ret ret-roll"><thead><tr><th scope="col">Rolling window <button type="button" class="tipbtn tipbtn-th" data-tipkey="roll_window" data-tip="The length of each closed look-back ReturnKoto? replays through this fund&rsquo;s NAV history (dividends reinvested)." aria-label="What does Rolling window mean?" aria-expanded="false">?</button></th><th scope="col" class="num">Latest <button type="button" class="tipbtn tipbtn-th" data-tipkey="roll_latest" data-tip="The most recent closed window of that length, ending at the fund&rsquo;s latest NAV month." aria-label="What does Latest mean?" aria-expanded="false">?</button></th><th scope="col" class="num">Median <button type="button" class="tipbtn tipbtn-th" data-tipkey="roll_median" data-tip="The middle result when every overlapping window of that length is lined up from lowest to highest." aria-label="What does Median mean?" aria-expanded="false">?</button></th><th scope="col" class="num">Best <button type="button" class="tipbtn tipbtn-th" data-tipkey="roll_best" data-tip="The highest annualized total return among all closed windows of that length." aria-label="What does Best mean?" aria-expanded="false">?</button></th><th scope="col" class="num">Worst <button type="button" class="tipbtn tipbtn-th" data-tipkey="roll_worst" data-tip="The lowest annualized total return among all closed windows of that length." aria-label="What does Worst mean?" aria-expanded="false">?</button></th><th scope="col" class="num">Windows <button type="button" class="tipbtn tipbtn-th" data-tipkey="roll_windows" data-tip="How many closed windows of that length were measured in this fund&rsquo;s history." aria-label="What does Windows mean?" aria-expanded="false">?</button></th></tr></thead><tbody>
-<tr><td>1 year</td><td class="num pos">+6.69%</td><td class="num pos">+2.12%</td><td class="num pos">+55.45%</td><td class="num neg">-14.37%</td><td class="num">107</td></tr>
-<tr><td>3 years</td><td class="num pos">+5.34%</td><td class="num pos">+4.89%</td><td class="num pos">+18.23%</td><td class="num neg">-5.59%</td><td class="num">83</td></tr>
+<tr><td>1 year</td><td data-l="Latest" class="num pos">+6.69%</td><td data-l="Median" class="num pos">+2.12%</td><td data-l="Best" class="num pos">+55.45%</td><td data-l="Worst" class="num neg">-14.37%</td><td data-l="Windows" class="num">107</td></tr>
+<tr><td>3 years</td><td data-l="Latest" class="num pos">+5.34%</td><td data-l="Median" class="num pos">+4.89%</td><td data-l="Best" class="num pos">+18.23%</td><td data-l="Worst" class="num neg">-5.59%</td><td data-l="Windows" class="num">83</td></tr>
 </tbody></table></div>
 <p class="sub" style="margin-top:10px">Each window is annualized total return (dividends reinvested). Latest is the most recent closed window; median / best / worst summarize every overlapping window of that length. Tap ? on a column header for a short tip.</p>
 <p class="sub" style="margin-top:16px">Path risk over the <b>same fixed 3-year window</b> as the rating:</p>
