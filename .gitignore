@@ -29,3 +29,15 @@ FETCH_HEAD
 # committing this here would just make it churn: added by hand, deleted by the
 # next build, over and over.
 blog/posts.json
+
+# Working screenshots and scratch files left at the repo root by browser tooling.
+# 78 of these had accumulated untracked; a blanket "git add -A" would have
+# published every one to the live site. Anchored to the root with a leading
+# slash so a genuinely named asset in a subfolder is never caught, and checked
+# against the tracked list first: apple-touch-icon.png, crowdfunding.png and
+# og-card.png are the only real root PNGs and none match these patterns.
+/page-*.png
+/homepage-*.png
+/returnkoto-*.png
+/ucb-*.png
+/_tmp_*
